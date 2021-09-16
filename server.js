@@ -79,7 +79,7 @@ restaurants(app, upload);
 mercadoPagoRoutes(app);
 
 
-server.listen(3000, '192.168.18.13' || 'localhost', function(){
+server.listen((process.env.PORT), function(){
 
     console.log('Aplicación de NodeJs ' + port + 'Iniciada..')
 
