@@ -11,19 +11,8 @@ const passport = require('passport');
 const io = require('socket.io')(server);
 
 
-/*
-* MERCADO PAGO CONFIGUARCION
-*/
-
-
-/*
-* SOCKETS
-*/
 const orderDeliverySocket = require('./sockets/orders_delivery_socket');
 
-/*
-* INICIALIZAR FIREBASE ADMIN
-*/
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
 })
@@ -96,7 +85,3 @@ module.exports = {
     app: app,
     server: server
 }
-
-// 200 - ES UN RESPUESTA EXITOSA
-// 404 - SIGNIFICA QUE LA URL NO EXISTE
-// 500 - ERROR INTERNO DEL SERVIDOR

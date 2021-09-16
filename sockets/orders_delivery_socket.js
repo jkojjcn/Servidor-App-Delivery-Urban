@@ -4,6 +4,7 @@ module.exports = (io) => {
     orderDeliveryNamespace.on('connection', function(socket) {
 
         console.log('USUARIO CONECTADO AL NAMESPACE /orders/delivery');
+        console.log(process.env.DATABASE_URL);
 
         socket.on('position', function(data) {
             console.log(`EMITIO ${JSON.stringify(data)}`);
