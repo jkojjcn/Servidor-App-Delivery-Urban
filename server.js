@@ -36,6 +36,7 @@ const orders = require('./routes/ordersRoutes');
 const mercadoPagoRoutes = require('./routes/mercadoPagoRoutes');
 
 const port = process.env.PORT || 3000;
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 app.use(logger('dev'));
 app.use(express.json());
