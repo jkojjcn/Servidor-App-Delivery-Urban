@@ -1,10 +1,11 @@
 {
-  "name": "nodeprojects",
+  "name": "mikuna-delivery",
   "version": "1.0.0",
-  "description": "Backend de la aplicacion delivery",
+  "description": "Backend de la aplicacion delivery Mikuna",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "keywords": [
     "flutter",
