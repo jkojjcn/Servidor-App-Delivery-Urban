@@ -10,8 +10,9 @@ types.setTypeParser(1114, function(stringValue) {
     return stringValue;
 });
 
+
 const databaseConfig = {
-    'host': 'ec2-54-146-84-101.compute-1.amazonaws.com',
+    'host': process.env.DATABASE_URL,
     'port': 5432,
     'database': 'dfp23mevs3oe30',
     'user' : 'vtkdjenwmtvbpi',
