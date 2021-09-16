@@ -24,11 +24,10 @@ let cloud_config = {
     password: process.env.DB_PASSWORD,
     host: 'ec2-54-146-84-101.compute-1.amazonaws.com',
     port: 5432,
-    ssl: true,
+    ssl: false,
+    strictSSL: false,
     dialect: 'postgres',
-    dialectOptions: {
-      "ssl": {"require":true }
-    }
+    
   };
 
 
