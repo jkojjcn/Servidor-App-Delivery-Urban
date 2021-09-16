@@ -17,8 +17,8 @@ const databaseConfig = {
     'database': 'dfp23mevs3oe30',
     'user' : 'vtkdjenwmtvbpi',
     'password': '09d15179e8b1bd2dac178feb0bdcdc40a6ac65ecf5f39e3e27c710dc31a57f4e',
-    ssl: false,
-    strictSSL: false
+    "ssl": false,
+    "strictSSL": false
 };
 /*let cloud_config = {
     username: 'vtkdjenwmtvbpi',
