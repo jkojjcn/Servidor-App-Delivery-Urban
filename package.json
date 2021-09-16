@@ -1,5 +1,5 @@
 {
-  "name": "nodeprojects",
+  "name": "mikuna-server",
   "version": "1.0.0",
   "description": "Backend de la aplicacion delivery Mikuna",
   "main": "server.js",
@@ -13,7 +13,7 @@
     "nodejs"
   ],
   "author": "jcn",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
     "@google-cloud/storage": "^5.8.5",
     "bluebird": "^3.7.2",
