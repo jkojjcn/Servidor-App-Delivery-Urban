@@ -12,7 +12,7 @@ types.setTypeParser(1114, function(stringValue) {
 
 
 const databaseConfig = {
-    'host': process.env.DATABASE_URL,
+    'host': `${process.env.DATABASE_URL}`,
     'port': 5432,
     'database': 'dfp23mevs3oe30',
     'user' : 'vtkdjenwmtvbpi',
