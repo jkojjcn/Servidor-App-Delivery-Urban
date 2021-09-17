@@ -47,7 +47,7 @@ Restaurant.findByCategoryAndRestaurantName = (id_category_restaurant, restaurant
     ON
         R.id_category = CR.id
     WHERE
-        CR.id = $1 AND R.name ILIKE $2
+        CR.id = $1 AND R.description ILIKE $2
     `;
 
     return db.manyOrNone(sql, [id_category_restaurant, `%${restaurant_name}%`]);
