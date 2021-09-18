@@ -40,7 +40,8 @@ Product.findByCategoryAndProductName = (id_category, product_name) => {
         P.image3,
         P.id_category,
         P.lat,
-        P.lng
+        P.lng,
+        P.features
     FROM
         products AS P
     INNER JOIN
