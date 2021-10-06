@@ -103,7 +103,7 @@ module.exports = {
 
             // RECORRER TODOS LOS PRODUCTOS AGREGADOS A LA ORDEN
             for (const product of order.products) {
-                await OrderHasProduct.create(data.id, product.id, product.quantity);
+                await OrderHasProduct.create(data.id, product.id, product.quantity, product.features);
             }
 
             return res.status(201).json({

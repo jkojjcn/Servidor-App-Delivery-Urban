@@ -4,7 +4,7 @@ const OrderHasProducts = {};
 
 
 
-OrderHasProducts.create = (id_order, id_product, quantity) => {
+OrderHasProducts.create = (id_order, id_product, quantity, features) => {
     const sql = `
     INSERT INTO
         order_has_products(
@@ -12,9 +12,11 @@ OrderHasProducts.create = (id_order, id_product, quantity) => {
             id_product,
             quantity,
             created_at,
-            updated_at
+            updated_at,
+            features
+
         )
-    VALUES($1, $2, $3, $4, $5)
+    VALUES($1, $2, $3, $4, $5, $6)
     `;
 
     return db.none(sql, [
@@ -22,7 +24,8 @@ OrderHasProducts.create = (id_order, id_product, quantity) => {
         id_product,
         quantity,
         new Date(),
-        new Date()
+        new Date(),
+        features
     ]);
 }
 
