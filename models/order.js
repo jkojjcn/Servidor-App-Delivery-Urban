@@ -341,6 +341,7 @@ Order.update = (order) => {
         id_delivery = $4,
         status = $5,
         updated_at = $6
+        time_order = $7
     WHERE
         id = $1
     `;
@@ -350,7 +351,8 @@ Order.update = (order) => {
         order.id_address,
         order.id_delivery,
         order.status,
-        new Date()
+        new Date(),
+        order.features
     ]);
 }
 
