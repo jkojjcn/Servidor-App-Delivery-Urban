@@ -128,6 +128,7 @@ module.exports = {
             
             let order = req.body;
             order.status = 'DESPACHADO';
+         
             await Order.update(order);
             
 

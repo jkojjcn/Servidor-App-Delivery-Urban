@@ -340,7 +340,7 @@ Order.update = (order) => {
         id_address = $3,
         id_delivery = $4,
         status = $5,
-        updated_at = $6
+        updated_at = $6,
         time_order = $7
     WHERE
         id = $1
