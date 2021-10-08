@@ -156,10 +156,6 @@ Order.findByRestaurantId = (restaurant_id, status) => {
         products AS P
     ON
         P.id = OHP.id_product
-    INNER JOIN
-        restaurants AS R
-    ON
-        R.name = O.restaurant_id
     WHERE
         O.restaurant_id = $1 AND O.status = $2
     GROUP BY
@@ -219,7 +215,6 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
         JSON_BUILD_OBJECT(
             'id', R.id,
             'name', R.name,
-            'description', R.description,
             'image', R.image1,
             'lat', R.lat,
             'lng', R.lng
