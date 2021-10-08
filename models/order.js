@@ -158,6 +158,10 @@ Order.findByRestaurantId = (restaurant_id, status) => {
         products AS P
     ON
         P.id = OHP.id_product
+    INNER JOIN
+        restaurants AS R
+    ON
+        R.id = O.restaurant_id
     WHERE
         O.restaurant_id = $1 AND O.status = $2
     GROUP BY
@@ -213,7 +217,17 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
             'neighborhood', A.neighborhood,
             'lat', A.lat,
             'lng', A.lng
-        ) AS address
+        ) AS address,
+        JSON_AGG(
+            JSON_BUILD_OBJECT(
+                'id', R.id,
+                'name', R.name,
+                'description', R.description,
+                'image', R.image1,
+                'lat', R.lat,
+                'lng', R.lng
+            )
+        ) AS restaurant,
     FROM 
         orders AS O
     INNER JOIN
@@ -236,6 +250,10 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
         products AS P
     ON
         P.id = OHP.id_product
+    INNER JOIN
+        restaurants AS R
+    ON
+        R.id = O.restaurant_id
     WHERE
         O.id_delivery = $1 AND status = $2 
     GROUP BY
@@ -258,6 +276,7 @@ Order.findByClientAndStatus = (id_client, status) => {
         O.timestamp,
         O.lat,
         O.lng,
+        O.restaurant_id,
         JSON_AGG(
             JSON_BUILD_OBJECT(
                 'id', P.id,
@@ -288,7 +307,17 @@ Order.findByClientAndStatus = (id_client, status) => {
             'neighborhood', A.neighborhood,
             'lat', A.lat,
             'lng', A.lng
-        ) AS address
+        ) AS address,
+        JSON_AGG(
+            JSON_BUILD_OBJECT(
+                'id', R.id,
+                'name', R.name,
+                'description', R.description,
+                'image', R.image1,
+                'lat', R.lat,
+                'lng', R.lng
+            )
+        ) AS restaurant,
     FROM 
         orders AS O
     INNER JOIN
@@ -311,6 +340,10 @@ Order.findByClientAndStatus = (id_client, status) => {
         products AS P
     ON
         P.id = OHP.id_product
+    INNER JOIN
+        restaurants AS R
+    ON
+        R.id = O.restaurant_id
     WHERE
         O.id_client = $1 AND status = $2 
     GROUP BY
