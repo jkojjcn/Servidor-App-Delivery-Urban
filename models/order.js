@@ -13,6 +13,7 @@ Order.findByStatus = (status) => {
         O.id_delivery,
         O.status,
         O.timestamp,
+        O.restaurant_id,
         JSON_AGG(
             JSON_BUILD_OBJECT(
                 'id', P.id,
@@ -43,7 +44,17 @@ Order.findByStatus = (status) => {
             'neighborhood', A.neighborhood,
             'lat', A.lat,
             'lng', A.lng
-        ) AS address
+        ) AS address,
+        JSON_AGG(
+            JSON_BUILD_OBJECT(
+                'id', R.id,
+                'name', R.name,
+                'description', R.description,
+                'image', R.image1,
+                'lat', R.lat,
+                'lng', R.lng
+            )
+        ) AS restaurant,
     FROM 
         orders AS O
     INNER JOIN
@@ -66,6 +77,10 @@ Order.findByStatus = (status) => {
         products AS P
     ON
         P.id = OHP.id_product
+    INNER JOIN
+        restaurants AS R
+    ON
+        R.id = O.restaurant_id
     WHERE
         status = $1
 
@@ -165,6 +180,7 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
         O.id_delivery,
         O.status,
         O.timestamp,
+        O.restaurant_id,
         JSON_AGG(
             JSON_BUILD_OBJECT(
                 'id', P.id,
@@ -316,6 +332,7 @@ Order.create = (order) => {
             created_at,
             updated_at,
             restaurant_id
+
         )
     VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id
     `;
