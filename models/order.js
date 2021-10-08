@@ -45,15 +45,13 @@ Order.findByStatus = (status) => {
             'lat', A.lat,
             'lng', A.lng
         ) AS address,
-        JSON_AGG(
-            JSON_BUILD_OBJECT(
-                'id', R.id,
-                'name', R.name,
-                'description', R.description,
-                'image', R.image1,
-                'lat', R.lat,
-                'lng', R.lng
-            )
+        JSON_BUILD_OBJECT(
+            'id', R.id,
+            'name', R.name,
+            'description', R.description,
+            'image', R.image1,
+            'lat', R.lat,
+            'lng', R.lng
         ) AS restaurant
     FROM 
         orders AS O
@@ -218,15 +216,13 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
             'lat', A.lat,
             'lng', A.lng
         ) AS address,
-        JSON_AGG(
-            JSON_BUILD_OBJECT(
-                'id', R.id,
-                'name', R.name,
-                'description', R.description,
-                'image', R.image1,
-                'lat', R.lat,
-                'lng', R.lng
-            )
+        JSON_BUILD_OBJECT(
+            'id', R.id,
+            'name', R.name,
+            'description', R.description,
+            'image', R.image1,
+            'lat', R.lat,
+            'lng', R.lng
         ) AS restaurant
     FROM 
         orders AS O
