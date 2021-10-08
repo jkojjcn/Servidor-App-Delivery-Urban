@@ -80,7 +80,7 @@ Order.findByStatus = (status) => {
     INNER JOIN
         restaurants AS R
     ON
-        R.id = O.restaurant_id
+        R.name = O.restaurant_id
     WHERE
         status = $1
 
@@ -161,7 +161,7 @@ Order.findByRestaurantId = (restaurant_id, status) => {
     INNER JOIN
         restaurants AS R
     ON
-        R.id = O.restaurant_id
+        R.name = O.restaurant_id
     WHERE
         O.restaurant_id = $1 AND O.status = $2
     GROUP BY
@@ -253,7 +253,7 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
     INNER JOIN
         restaurants AS R
     ON
-        R.id = O.restaurant_id
+        R.name = O.restaurant_id
     WHERE
         O.id_delivery = $1 AND status = $2 
     GROUP BY
@@ -343,7 +343,7 @@ Order.findByClientAndStatus = (id_client, status) => {
     INNER JOIN
         restaurants AS R
     ON
-        R.id = O.restaurant_id
+        R.name = O.restaurant_id
     WHERE
         O.id_client = $1 AND status = $2 
     GROUP BY
