@@ -54,7 +54,7 @@ Order.findByStatus = (status) => {
                 'lat', R.lat,
                 'lng', R.lng
             )
-        ) AS restaurant,
+        ) AS restaurant
     FROM 
         orders AS O
     INNER JOIN
@@ -227,7 +227,7 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
                 'lat', R.lat,
                 'lng', R.lng
             )
-        ) AS restaurant,
+        ) AS restaurant
     FROM 
         orders AS O
     INNER JOIN
@@ -317,7 +317,7 @@ Order.findByClientAndStatus = (id_client, status) => {
                 'lat', R.lat,
                 'lng', R.lng
             )
-        ) AS restaurant,
+        ) AS restaurant
     FROM 
         orders AS O
     INNER JOIN
