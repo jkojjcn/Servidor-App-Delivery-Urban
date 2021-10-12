@@ -40,7 +40,8 @@ Order.findByStatus = (status) => {
             'id', U2.id,
             'name', U2.name,
             'lastname', U2.lastname,
-            'image', U2.image
+            'image', U2.image,
+            'phone', U2.phone
         ) AS delivery,
         JSON_BUILD_OBJECT(
             'id', A.id,
@@ -133,7 +134,8 @@ Order.findByRestaurantId = (restaurant_id, status) => {
             'id', U2.id,
             'name', U2.name,
             'lastname', U2.lastname,
-            'image', U2.image
+            'image', U2.image,
+            'phone', U2.phone
         ) AS delivery,
         JSON_BUILD_OBJECT(
             'id', A.id,
@@ -215,6 +217,7 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
             'name', U2.name,
             'lastname', U2.lastname,
             'image', U2.image,
+            'phone', U2.phone,
             'notification_token', U2.notification_token
         ) AS delivery,
         JSON_BUILD_OBJECT(
@@ -304,7 +307,8 @@ Order.findByClientAndStatus = (id_client, status) => {
             'id', U2.id,
             'name', U2.name,
             'lastname', U2.lastname,
-            'image', U2.image
+            'image', U2.image,
+            'phone', U2.phone
         ) AS delivery,
         JSON_BUILD_OBJECT(
             'id', A.id,
