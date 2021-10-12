@@ -14,6 +14,7 @@ Order.findByStatus = (status) => {
         O.status,
         O.timestamp,
         O.restaurant_id,
+        O.distance,
         JSON_AGG(
             JSON_BUILD_OBJECT(
                 'id', P.id,
@@ -105,6 +106,7 @@ Order.findByRestaurantId = (restaurant_id, status) => {
         O.status,
         O.timestamp,
         O.restaurant_id,
+        O.distance,
         JSON_AGG(
             JSON_BUILD_OBJECT(
                 'id', P.id,
@@ -183,6 +185,7 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
         O.status,
         O.timestamp,
         O.restaurant_id,
+        O.distance,
         JSON_AGG(
             JSON_BUILD_OBJECT(
                 'id', P.id,
@@ -274,6 +277,7 @@ Order.findByClientAndStatus = (id_client, status) => {
         O.lat,
         O.lng,
         O.restaurant_id,
+        O.distance,
         JSON_AGG(
             JSON_BUILD_OBJECT(
                 'id', P.id,
