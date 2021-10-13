@@ -399,6 +399,28 @@ Order.update = (order) => {
         id_address = $3,
         id_delivery = $4,
         status = $5,
+        updated_at = $6
+    WHERE
+        id = $1
+    `;
+    return db.none(sql, [
+        order.id,
+        order.id_client,
+        order.id_address,
+        order.id_delivery,
+        order.status,
+        new Date()
+    ]);
+}
+Order.updateDispatched = (order) => {
+    const sql = `
+    UPDATE
+        orders
+    SET
+        id_client = $2,
+        id_address = $3,
+        id_delivery = $4,
+        status = $5,
         updated_at = $6,
         time_order = $7
     WHERE
