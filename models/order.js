@@ -34,7 +34,8 @@ Order.findByStatus = (status) => {
             'id', U.id,
             'name', U.name,
             'lastname', U.lastname,
-            'image', U.image
+            'image', U.image,
+            'phone', U.phone
         ) AS client,
 		JSON_BUILD_OBJECT(
             'id', U2.id,
@@ -128,7 +129,8 @@ Order.findByRestaurantId = (restaurant_id, status) => {
             'id', U.id,
             'name', U.name,
             'lastname', U.lastname,
-            'image', U.image
+            'image', U.image,
+            'phone', U.phone
         ) AS client,
 		JSON_BUILD_OBJECT(
             'id', U2.id,
@@ -210,7 +212,8 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
             'name', U.name,
             'lastname', U.lastname,
             'image', U.image,
-            'notification_token', U.notification_token
+            'notification_token', U.notification_token,
+            'phone', U.phone
         ) AS client,
 		JSON_BUILD_OBJECT(
             'id', U2.id,
