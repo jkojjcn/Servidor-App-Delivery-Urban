@@ -429,19 +429,12 @@ Order.updateAcepted = (order) => {
     UPDATE
         orders
     SET
-        id_delivery = $4,
-        acepted = 'Aceptado',
-        updated_at = $6
+        acepted = 'Aceptado'
     WHERE
         id = $1
     `;
     return db.none(sql, [
-        order.id,
-        order.id_client,
-        order.id_address,
-        order.id_delivery,
-        order.status,
-        new Date()
+        order.id
     ]);
 }
 Order.updateRefuse = (order) => {
@@ -449,18 +442,13 @@ Order.updateRefuse = (order) => {
     UPDATE
         orders
     SET
-        id_delivery = '',
-        updated_at = $6
+        id_delivery = 0
     WHERE
         id = $1
     `;
     return db.none(sql, [
         order.id,
-        order.id_client,
-        order.id_address,
-        order.id_delivery,
-        order.status,
-        new Date()
+
     ]);
 }
 
