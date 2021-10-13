@@ -172,6 +172,57 @@ module.exports = {
         }
     },
 
+//// Actualizaciones de aceptacion delivery
+    async updateToOnAceptedDelivery(req, res, next) {
+        try {
+            
+            let order = req.body;
+            order.status = 'DESPACHADO';
+            await Order.updateAcepted(order);
+            
+
+            return res.status(201).json({
+                success: true,
+                message: 'La orden se actualizo correctamente',
+            });
+
+        } 
+        catch (error) {
+            console.log(`Error ${error}`);    
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error al actualizar la orden',
+                error: error
+            });
+        }
+    },
+    async updateToOnRefuseDelivery(req, res, next) {
+        try {
+            
+            let order = req.body;
+            order.status = 'DESPACHADO';
+            await Order.updateRefuse(order);
+            
+
+            return res.status(201).json({
+                success: true,
+                message: 'La orden se actualizo correctamente',
+            });
+
+        } 
+        catch (error) {
+            console.log(`Error ${error}`);    
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error al actualizar la orden',
+                error: error
+            });
+        }
+    },
+
+
+
+
     async updateToDelivered(req, res, next) {
         try {
             

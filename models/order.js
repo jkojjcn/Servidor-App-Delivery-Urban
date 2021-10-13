@@ -395,6 +395,9 @@ Order.create = (order) => {
     ]);
 }
 
+
+
+
 Order.update = (order) => {
     const sql = `
     UPDATE
@@ -417,6 +420,50 @@ Order.update = (order) => {
         new Date()
     ]);
 }
+
+
+/// Actualizaciones de aceptacion delivery
+
+Order.updateAcepted = (order) => {
+    const sql = `
+    UPDATE
+        orders
+    SET
+        id_delivery = $4,
+        acepted = 'Aceptado',
+        updated_at = $6
+    WHERE
+        id = $1
+    `;
+    return db.none(sql, [
+        order.id,
+        order.id_client,
+        order.id_address,
+        order.id_delivery,
+        order.status,
+        new Date()
+    ]);
+}
+Order.updateRefuse = (order) => {
+    const sql = `
+    UPDATE
+        orders
+    SET
+        id_delivery = '',
+        updated_at = $6
+    WHERE
+        id = $1
+    `;
+    return db.none(sql, [
+        order.id,
+        order.id_client,
+        order.id_address,
+        order.id_delivery,
+        order.status,
+        new Date()
+    ]);
+}
+
 Order.updateDispatched = (order) => {
     const sql = `
     UPDATE
