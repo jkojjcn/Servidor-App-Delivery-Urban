@@ -14,7 +14,8 @@ Restaurant.findByCategoryRestaurant = (id_category_restaurant) => {
         R.image3,
         R.id_category,
         R.lat,
-        R.lng
+        R.lng,
+        R.notification_token
     FROM
         restaurants AS R
     INNER JOIN
@@ -39,7 +40,8 @@ Restaurant.findByCategoryAndRestaurantName = (id_category_restaurant, restaurant
         R.image3,
         R.id_category,
         R.lat,
-        R.lng
+        R.lng,
+        R.notification_token
     FROM
         restaurants AS R
     INNER JOIN
