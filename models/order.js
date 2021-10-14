@@ -58,7 +58,8 @@ Order.findByStatus = (status) => {
             'description', R.description,
             'image1', R.image1,
             'lat', R.lat,
-            'lng', R.lng
+            'lng', R.lng,
+            'notification_token', R.notification_token
         ) AS restaurant
     FROM 
         orders AS O
@@ -240,7 +241,8 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
             'name', R.name,
             'image1', R.image1,
             'lat', R.lat,
-            'lng', R.lng
+            'lng', R.lng,
+            'notification_token', R.notification_token
         ) AS restaurant
     FROM 
         orders AS O
@@ -332,7 +334,8 @@ Order.findByClientAndStatus = (id_client, status) => {
             'description', R.description,
             'image1', R.image1,
             'lat', R.lat,
-            'lng', R.lng
+            'lng', R.lng,
+            'notification_token', R.notification_token
         ) AS restaurant
     FROM 
         orders AS O
