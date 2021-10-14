@@ -18,6 +18,7 @@ Order.findByStatus = (status) => {
         O.time_order,
         O.acepted,
         O.tarjeta,
+        O.total_cliente,
         JSON_AGG(
             JSON_BUILD_OBJECT(
                 'id', P.id,
@@ -116,6 +117,7 @@ Order.findByRestaurantId = (restaurant_id, status) => {
         O.time_order,
         O.acepted,
         O.tarjeta,
+        O.total_cliente,
         JSON_AGG(
             JSON_BUILD_OBJECT(
                 'id', P.id,
@@ -202,6 +204,7 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
         O.time_order,
         O.acepted,
         O.tarjeta,
+        O.total_cliente,
         JSON_AGG(
             JSON_BUILD_OBJECT(
                 'id', P.id,
@@ -300,6 +303,7 @@ Order.findByClientAndStatus = (id_client, status) => {
         O.time_order,
         O.acepted,
         O.tarjeta,
+        O.total_cliente,
         JSON_AGG(
             JSON_BUILD_OBJECT(
                 'id', P.id,
@@ -389,10 +393,11 @@ Order.create = (order) => {
             updated_at,
             restaurant_id,
             distance,
-            tarjeta
+            tarjeta,
+            total_cliente
 
         )
-    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING id
+    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id
     `;
 
     return db.oneOrNone(sql, [
@@ -404,7 +409,8 @@ Order.create = (order) => {
         new Date(),
         order.restaurant_id,
         order.distance,
-        order.tarjeta
+        order.tarjeta,
+        order.total_cliente
     ]);
 }
 
