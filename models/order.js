@@ -443,7 +443,7 @@ Order.update = (order) => {
 
 /// Actualizaciones de aceptacion delivery
 
-Order.updateAcepted = (order, id_delivery) => {
+Order.updateAcepted = (order) => {
     const sql = `
     UPDATE
         orders
@@ -455,7 +455,7 @@ Order.updateAcepted = (order, id_delivery) => {
     `;
     return db.none(sql, [
         order.id,
-        id_delivery
+        order.id_delivery
     ]);
 }
 Order.updateRefuse = (order) => {
