@@ -451,7 +451,7 @@ Order.updateAcepted = (order) => {
         acepted = 'Aceptado',
         id_delivery = $2
     WHERE
-        id = $1
+        id = $1 AND acepted = NULL
     `;
     return db.none(sql, [
         order.id,
