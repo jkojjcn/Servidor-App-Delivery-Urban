@@ -443,17 +443,19 @@ Order.update = (order) => {
 
 /// Actualizaciones de aceptacion delivery
 
-Order.updateAcepted = (order) => {
+Order.updateAcepted = (order, id_delivery) => {
     const sql = `
     UPDATE
         orders
     SET
-        acepted = 'Aceptado'
+        acepted = 'Aceptado',
+        id_delivery = $2
     WHERE
         id = $1
     `;
     return db.none(sql, [
-        order.id
+        order.id,
+        id_delivery
     ]);
 }
 Order.updateRefuse = (order) => {
@@ -466,8 +468,7 @@ Order.updateRefuse = (order) => {
         id = $1
     `;
     return db.none(sql, [
-        order.id,
-
+        order.id
     ]);
 }
 
