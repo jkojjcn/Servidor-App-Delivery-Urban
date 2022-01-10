@@ -450,7 +450,7 @@ Order.updateAcepted = (order) => {
     SET
         acepted = 'Aceptado',
         id_delivery = $2
-    WHEREs
+    WHERE
         id = $1
     `;
     return db.none(sql, [
