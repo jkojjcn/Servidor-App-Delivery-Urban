@@ -177,7 +177,7 @@ module.exports = {
         try {
             
             let order = req.body;
-            const id_delivery = req.params.id_client;
+            const id_delivery = req.params.id_delivery;
             order.status = 'DESPACHADO';
             await Order.updateAcepted(order, id_delivery);
             
