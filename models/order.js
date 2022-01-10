@@ -277,7 +277,7 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
     ON
         R.name = O.restaurant_id
     WHERE
-        O.id_delivery = $1 AND status = $2 
+        status = $2 
     GROUP BY
         O.id, U.id, A.id, U2.id, R.id
     `;
