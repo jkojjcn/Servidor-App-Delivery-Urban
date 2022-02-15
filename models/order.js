@@ -30,7 +30,8 @@ Order.findByStatus = (status) => {
                 'image1', P.image1,
                 'image2', P.image2,
                 'image3', P.image3,
-                'quantity', OHP.quantity
+                'quantity', OHP.quantity,
+                'features', OHP.features
             )
         ) AS products,
         JSON_BUILD_OBJECT(
@@ -129,7 +130,8 @@ Order.findByRestaurantId = (restaurant_id, status) => {
                 'image1', P.image1,
                 'image2', P.image2,
                 'image3', P.image3,
-                'quantity', OHP.quantity
+                'quantity', OHP.quantity,
+                'features', OHP.features
             )
         ) AS products,
         JSON_BUILD_OBJECT(
@@ -216,7 +218,8 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
                 'image1', P.image1,
                 'image2', P.image2,
                 'image3', P.image3,
-                'quantity', OHP.quantity
+                'quantity', OHP.quantity,
+                'features', OHP.features
             )
         ) AS products,
         JSON_BUILD_OBJECT(
@@ -313,7 +316,8 @@ Order.findByClientAndStatus = (id_client, status) => {
                 'image1', P.image1,
                 'image2', P.image2,
                 'image3', P.image3,
-                'quantity', OHP.quantity
+                'quantity', OHP.quantity,
+                'features', OHP.features
             )
         ) AS products,
         JSON_BUILD_OBJECT(
