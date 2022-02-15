@@ -16,4 +16,23 @@ module.exports = (io) => {
         });
     });
 
+
+    const allDeliveryLocation = io.of('/orders/allDelivery');
+    allDeliveryLocation.on('connection', function(socket) {
+
+        console.log('USUARIO CONECTADO AL ALLDELIVERY /orders/allDelivery');
+        console.log(process.env.DATABASE_URL);
+
+        socket.on('positionAD', function(data) {
+            console.log(`EMITIO ${JSON.stringify(data)}`);
+            orderDeliveryNamespace.emit(`position/aD`, { lat: data.lat, lng: data.lng  });
+        });
+
+        socket.on('disconnect', function(data) {
+            console.log('USUARIO DESCONECTADO de AD');
+        });
+    });
+
+
+
 }
