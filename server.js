@@ -34,6 +34,8 @@ const categories_restaurants = require('./routes/categoriesRestaurantsRoutes');
 const address = require('./routes/addressRoutes');
 const orders = require('./routes/ordersRoutes');
 const mercadoPagoRoutes = require('./routes/mercadoPagoRoutes');
+const message = require('./routes/messajeRoutes');
+
 
 const port = process.env.PORT || 3000;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
@@ -67,6 +69,7 @@ products(app, upload);
 categories_restaurants(app);
 restaurants(app, upload);
 mercadoPagoRoutes(app);
+message(app);
 
 
 server.listen((process.env.PORT), function(){
