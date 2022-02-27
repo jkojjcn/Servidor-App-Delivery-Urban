@@ -5,12 +5,13 @@ const Message = {};
 Message.findMessage = (id_user) => {
     const sql = `
     SELECT
-        id,
-        to,
-        open,
-        message,
-        created_at,
-        updated_at,
+        M.id,
+        M.to,
+        M.open,
+        M.message,
+        M.type,
+        M.created_at,
+        M.updated_at,
         JSON_BUILD_OBJECT(
             'id', U.id,
             'name', U.name,
@@ -26,17 +27,17 @@ Message.findMessage = (id_user) => {
             'image', U2.image,
             'phone', U2.phone,
             'notification_token', U2.notification_token
-        ) AS to,
+        ) AS receiver,
     FROM
-        message
+        message as M
     INNER JOIN
         users AS U
     ON
-        id = U.id
+        M.id = U.id
 	LEFT JOIN
 		users AS U2
 	ON
-		to = U2.id
+		M.to = U2.id
     WHERE
         id = $1
     `;
