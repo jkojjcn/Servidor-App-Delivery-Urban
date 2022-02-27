@@ -27,7 +27,7 @@ Message.findMessage = (id_user) => {
             'image', U2.image,
             'phone', U2.phone,
             'notification_token', U2.notification_token
-        ) AS receiver,
+        ) AS receiver
     FROM
         message AS M
     INNER JOIN
