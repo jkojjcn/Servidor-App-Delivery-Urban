@@ -29,7 +29,7 @@ Message.findMessage = (id_user) => {
             'notification_token', U2.notification_token
         ) AS receiver,
     FROM
-        message as M
+        message AS M
     INNER JOIN
         users AS U
     ON
