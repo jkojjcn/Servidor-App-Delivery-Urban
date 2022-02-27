@@ -5,7 +5,7 @@ const Message = {};
 Message.findMessage = (id_user) => {
     const sql = `
     SELECT
-        M.id,
+        M.from,
         M.to,
         M.open,
         M.message,
@@ -33,13 +33,13 @@ Message.findMessage = (id_user) => {
     INNER JOIN
         users AS U
     ON
-        M.id = U.id
+        M.from = U.id
 	LEFT JOIN
 		users AS U2
 	ON
 		M.to = U2.id
     WHERE
-        id = $1
+        M.from = $1
     `;
     return db.manyOrNone(sql, id_user);
 }
