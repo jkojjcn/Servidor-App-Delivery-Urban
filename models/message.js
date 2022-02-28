@@ -40,6 +40,8 @@ Message.findMessage = (id_user) => {
 		M.to = U2.id
     WHERE
         M.from = $1
+    OR
+        M.to = $1
     `;
     return db.manyOrNone(sql, id_user);
 }
