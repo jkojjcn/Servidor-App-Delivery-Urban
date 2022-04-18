@@ -72,5 +72,4 @@ Message.create = (message) => {
     ]);
 }
 
-
 module.exports = Message;
