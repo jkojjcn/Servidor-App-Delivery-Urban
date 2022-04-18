@@ -1,5 +1,7 @@
+const Message = require('../models/message');
 const Order = require('../models/order');
 const OrderHasProduct = require('../models/order_has_products');
+
 
 
 module.exports = {
@@ -10,7 +12,6 @@ module.exports = {
         try {
             const status = req.params.status;
             const data = await Order.findByStatus(status);
-            console.log(`Status ${JSON.stringify(data)}`);
             return res.status(201).json(data);
         } 
         catch (error) {
@@ -35,7 +36,6 @@ module.exports = {
             
            // console.log(`Status ${status}`);
             const data = await Order.findByRestaurantId(id_restaurant, status);
-            console.log(`Status ${JSON.stringify(data)}`);
             return res.status(201).json(data);
         } 
         catch (error) {
@@ -58,7 +58,6 @@ module.exports = {
             const status = req.params.status;
 
             const data = await Order.findByDeliveryAndStatus(id_delivery, status);
-            console.log(`Status delivery ${JSON.stringify(data)}`);
             return res.status(201).json(data);
         } 
         catch (error) {
@@ -128,9 +127,10 @@ module.exports = {
             
             let order = req.body;
             order.status = 'DESPACHADO';
+
+
          
             await Order.updateDispatched(order);
-            
 
             return res.status(201).json({
                 success: true,
