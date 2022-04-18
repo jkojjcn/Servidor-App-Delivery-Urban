@@ -50,25 +50,25 @@ Message.create = (message) => {
     const sql = `
     INSERT INTO
         message(
-        from,
-        to,
-        open,
-        message,
-        type,
-        created_at,
-        updated_at,
+            message,
+            created_at,
+            updated_at,
+            type,
+            from,
+            to,
+            open
         )
     VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id
     `;
 
     return db.oneOrNone(sql, [
+        message.message,
+        Date.now(),
+        Date.now(),
+        message.type,
         message.from,
         message.to,
-        message.open,
-        message.message,
-        message.type,
-        Date.now(),
-        Date.now()
+        message.open
     ]);
 }
 
