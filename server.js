@@ -30,7 +30,6 @@ const categories = require('./routes/categoriesRoutes');
 const products = require('./routes/productsRoutes');
 const restaurants = require('./routes/restaurantsRoutes');
 const categories_restaurants = require('./routes/categoriesRestaurantsRoutes');
-
 const address = require('./routes/addressRoutes');
 const orders = require('./routes/ordersRoutes');
 const mercadoPagoRoutes = require('./routes/mercadoPagoRoutes');
