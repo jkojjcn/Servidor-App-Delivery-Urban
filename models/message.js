@@ -54,7 +54,6 @@ Message.create = (message) => {
             created_at,
             updated_at,
             type,
-            from,
             to,
             open
         )
@@ -66,7 +65,6 @@ Message.create = (message) => {
         Date.now(),
         Date.now(),
         message.type,
-        message.from,
         message.to,
         message.open
     ]);
