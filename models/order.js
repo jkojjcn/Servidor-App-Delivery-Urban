@@ -421,7 +421,7 @@ Order.create = (order) => {
 
 
 
-Order.update = (order) => {
+Order.update = (order, price) => {
     const sql = `
     UPDATE
         orders
@@ -430,7 +430,8 @@ Order.update = (order) => {
         id_address = $3,
         id_delivery = $4,
         status = $5,
-        updated_at = $6
+        updated_at = $6,
+        total_client = $7
     WHERE
         id = $1
     `;
@@ -440,7 +441,8 @@ Order.update = (order) => {
         order.id_address,
         order.id_delivery,
         order.status,
-        new Date()
+        new Date(),
+        price
     ]);
 }
 

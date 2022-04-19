@@ -153,7 +153,8 @@ module.exports = {
             
             let order = req.body;
             order.status = 'EN CAMINO';
-            await Order.update(order);
+            let price = req.params.price
+            await Order.update(order, price);
             
 
             return res.status(201).json({

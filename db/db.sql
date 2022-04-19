@@ -51,14 +51,14 @@ VALUES(
 
 DROP TABLE IF EXISTS message CASCADE;
 CREATE TABLE message(
-	id VARCHAR(255) NULL,
-	email VARCHAR(255) NOT NULL,
-	name VARCHAR(255) NOT NULL,
-	lastname VARCHAR(255) NULL,
-	phone VARCHAR(80) NOT NULL,
-	notification_token VARCHAR(255) NULL,
-	image VARCHAR(255) NULL,
-	open VARCHAR(255) NULL
+	id BIGSERIAL PRIMARY KEY,
+	type VARCHAR(90) NOT NULL,
+	from_id BIGINT NULL,
+	to_id BIGINT NULL,
+	message_data VARCHAR(90) NULL,
+	id_open VARCHAR(255) NULL,
+	updated_at VARCHAR(255) NULL,
+	created_at VARCHAR(255) NULL
 );
 
 
