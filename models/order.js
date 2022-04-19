@@ -431,7 +431,7 @@ Order.update = (order, price) => {
         id_delivery = $4,
         status = $5,
         updated_at = $6,
-        total_client = $7
+        total_cliente = $7
     WHERE
         id = $1
     `;
