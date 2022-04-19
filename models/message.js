@@ -46,25 +46,31 @@ Message.findMessage = (id_user) => {
     return db.manyOrNone(sql, id_user);
 }
 
+
+
 Message.create = (message) => {
     const sql = `
     INSERT INTO
         message(
-            message,
-            created_at,
-            updated_at,
             type,
-            open
+            from_id,
+            to_id,
+            message_data
+            id_open,
+            updated_at,
+            created_at
         )
-    VALUES($1, $2, $3, $4, $5) RETURNING msg
+    VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id
     `;
 
     return db.oneOrNone(sql, [
-        message.message,
-        new Date(),
-        new Date(),
         message.type,
-        message.open
+        message.from,
+        message.to,
+        message.message,
+        message.open,
+        new Date(),
+        new Date(),
     ]);
 }
 
