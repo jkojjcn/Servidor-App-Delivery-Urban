@@ -8,7 +8,7 @@ module.exports = (io) => {
 
         socket.on('position', function(data) {
             console.log(`EMITIO ${JSON.stringify(data)}`);
-            orderDeliveryNamespace.emit(`position/${data.id_order}`, { lat: data.lat, lng: data.lng  });
+            orderDeliveryNamespace.emit(`position/${data.id_order}`, { lat: data.lat, lng: data.lng, speed: data.speed, heading: data.heading  });
         });
 
         socket.on('disconnect', function(data) {
