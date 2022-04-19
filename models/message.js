@@ -5,13 +5,13 @@ const Message = {};
 Message.findMessage = (id_user) => {
     const sql = `
     SELECT
-        M.from,
-        M.to,
-        M.open,
-        M.message,
         M.type,
-        M.created_at,
+        M.from_id,
+        M.to_id,
+        M.message_data,
+        M.id_open,
         M.updated_at,
+        M.created_at,
         JSON_BUILD_OBJECT(
             'id', U.id,
             'name', U.name,
@@ -33,15 +33,15 @@ Message.findMessage = (id_user) => {
     INNER JOIN
         users AS U
     ON
-        M.from = U.id
+        M.from_id = U.id
 	LEFT JOIN
 		users AS U2
 	ON
-		M.to = U2.id
+		M.to_id = U2.id
     WHERE
-        M.from = $1
+        M.from_id = $1
     OR
-        M.to = $1
+        M.to_id = $1
     `;
     return db.manyOrNone(sql, id_user);
 }
