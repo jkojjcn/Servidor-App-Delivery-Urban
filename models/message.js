@@ -55,7 +55,7 @@ Message.create = (message) => {
             type,
             from_id,
             to_id,
-            message_data
+            message_data,
             id_open,
             updated_at,
             created_at
