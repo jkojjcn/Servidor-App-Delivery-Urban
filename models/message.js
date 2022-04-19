@@ -57,7 +57,7 @@ Message.create = (message) => {
             to,
             open
         )
-    VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id
+    VALUES($1, $2, $3, $4, $5, $6) RETURNING id
     `;
 
     return db.oneOrNone(sql, [
