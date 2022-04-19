@@ -61,8 +61,8 @@ Message.create = (message) => {
 
     return db.oneOrNone(sql, [
         message.message,
-        Date.now(),
-        Date.now(),
+        new Date(),
+        new Date(),
         message.type,
         message.open
     ]);
