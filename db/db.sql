@@ -64,6 +64,7 @@ CREATE TABLE message(
 
 
 
+
 DROP TABLE IF EXISTS users CASCADE;
 CREATE TABLE users(
 	id BIGSERIAL PRIMARY KEY,
@@ -176,15 +177,17 @@ CREATE TABLE orders(
 
 DROP TABLE IF EXISTS order_has_products CASCADE;
 CREATE TABLE order_has_products(
+	id BIGSERIAL PRIMARY KEY
 	id_order BIGINT NOT NULL,
 	id_product BIGINT NOT NULL,
 	quantity BIGINT NOT NULL,
 	created_at TIMESTAMP(0) NOT NULL,
 	updated_at TIMESTAMP(0) NOT NULL,
-	PRIMARY KEY(id_order, id_product)
-	
+	features VARCHAR(900) NULL
 );
 
+ALTER TABLE order_has_products
+ADD COLUMN id BIGSERIAL PRIMARY KEY,
 
 
 //FOREIGN KEY(id_order) REFERENCES orders(id) ON UPDATE CASCADE ON DELETE CASCADE,
