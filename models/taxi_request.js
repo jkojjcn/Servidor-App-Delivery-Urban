@@ -19,6 +19,14 @@ TaxiRequest.findByUser = (id_user) => {
             'phone', U.phone
         ) AS taxi_user,
         JSON_BUILD_OBJECT(
+            'id', U2.id,
+            'name', U2.name,
+            'lastname', U2.lastname,
+            'image', U2.image,
+            'notification_token', U2.notification_token,
+            'phone', U2.phone
+        ) AS taxi_client,
+        JSON_BUILD_OBJECT(
             'id', A.id,
             'address', A.address,
             'neighborhood', A.neighborhood,
@@ -47,6 +55,8 @@ TaxiRequest.findByUser = (id_user) => {
         A.id = O.id_address
     WHERE 
         T.id_client = $1
+    OR
+        T.id_taxi = $1
     `;
 
     return db.manyOrNone(sql, id_user);
