@@ -52,7 +52,7 @@ TaxiRequest.findByUser = (id_user) => {
     INNER JOIN
         address AS A
     ON
-        A.id = O.id_address
+        A.id = T.id_address
     WHERE 
         T.id_client = $1
     OR
