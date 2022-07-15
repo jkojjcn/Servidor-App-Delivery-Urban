@@ -54,7 +54,7 @@ TaxiRequest.findByUser = (id_user) => {
     ON
         A.id = T.id_address
     WHERE 
-        T.id_client = $1 AND T.request_status != 'finalizado'
+        T.id_client = $1
     OR
         T.id_taxi = $1
     `;
