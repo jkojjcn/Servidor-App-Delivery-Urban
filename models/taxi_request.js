@@ -59,7 +59,7 @@ TaxiRequest.findByUser = (id_user) => {
         T.id_taxi = $1
     `;
 
-    return db.one(sql, id_user);
+    return db.manyOrNone(sql, id_user);
 }
 
 TaxiRequest.create = (taxi_request) => {
