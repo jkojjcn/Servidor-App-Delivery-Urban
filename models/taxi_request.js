@@ -5,20 +5,48 @@ const TaxiRequest = {};
 TaxiRequest.findByUser = (id_user) => {
     const sql = `
     SELECT
-        request_status,
-        id_user,
-        id_taxi,
-        id_time,
-        id_address,
-        lat,
-        lng,
-        created_at,
-        updated_at,
-        arrived_at
+        T.id,
+        T.request_status,
+        T.id_client,
+        T.id_taxi,
+        T.id_address,
+        JSON_BUILD_OBJECT(
+            'id', U.id,
+            'name', U.name,
+            'lastname', U.lastname,
+            'image', U.image,
+            'notification_token', U.notification_token,
+            'phone', U.phone
+        ) AS taxi_user,
+        JSON_BUILD_OBJECT(
+            'id', A.id,
+            'address', A.address,
+            'neighborhood', A.neighborhood,
+            'lat', A.lat,
+            'lng', A.lng
+        ) AS address_request,
+        T.id_time,
+        T.lat,
+        T.lng,
+        T.created_at,
+        T.updated_at,
+        T.arrived_at
     FROM
-        taxi_request
+        taxi_request AS T
+    INNER JOIN
+        users AS U
+    ON
+        T.id_client = U.id
+    LEFT JOIN
+        users AS U2
+    ON
+        T.id_taxi = U2.id
+    INNER JOIN
+        address AS A
+    ON
+        A.id = O.id_address
     WHERE 
-        id_user = $1
+        T.id_client = $1
     `;
 
     return db.manyOrNone(sql, id_user);
