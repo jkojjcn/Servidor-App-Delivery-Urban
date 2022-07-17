@@ -75,7 +75,6 @@ module.exports = {
             return res.status(201).json({
                 success: true,
                 message: 'Buscando Taxi..',
-                data: data.id
             });
 
         } 
