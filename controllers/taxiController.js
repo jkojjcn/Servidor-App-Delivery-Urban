@@ -72,7 +72,6 @@ module.exports = {
             
             let taxi_request = req.body;
             await TaxiController.ticketRequest(taxi_request);
-
             return res.status(201).json({
                 success: true,
                 message: 'Buscando Taxi..',
