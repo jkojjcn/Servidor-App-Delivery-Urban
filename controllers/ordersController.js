@@ -15,7 +15,7 @@ module.exports = {
             return res.status(201).json(data);
         } 
         catch (error) {
-            console.log(`Error ${error}`);    
+   
             return res.status(501).json({
                 message: 'Hubo un error al tratar de obtener las ordenes por estado',
                 error: error,
@@ -34,12 +34,11 @@ module.exports = {
             const id_restaurant = req.params.id_restaurant;
             const status = req.params.status;
             
-           // console.log(`Status ${status}`);
+
             const data = await Order.findByRestaurantId(id_restaurant, status);
             return res.status(201).json(data);
         } 
-        catch (error) {
-            console.log(`Error ${error}`);    
+        catch (error) { 
             return res.status(501).json({
                 message: 'Hubo un error al tratar de obtener las ordenes por estado',
                 error: error,
@@ -61,7 +60,7 @@ module.exports = {
             return res.status(201).json(data);
         } 
         catch (error) {
-            console.log(`Error ${error}`);    
+
             return res.status(501).json({
                 message: 'Hubo un error al tratar de obtener las ordenes por estado',
                 error: error,
@@ -81,7 +80,7 @@ module.exports = {
             return res.status(201).json(data);
         } 
         catch (error) {
-            console.log(`Error ${error}`);    
+ 
             return res.status(501).json({
                 message: 'Hubo un error al tratar de obtener las ordenes por estado',
                 error: error,
@@ -98,7 +97,6 @@ module.exports = {
             order.status = 'PAGADO';
             const data = await Order.create(order);
             
-            console.log('LA ORDEN SE CREO CORRECTAMENTEee');
 
             // RECORRER TODOS LOS PRODUCTOS AGREGADOS A LA ORDEN
             for (const product of order.products) {
@@ -113,7 +111,7 @@ module.exports = {
 
         } 
         catch (error) {
-            console.log(`Error ${error}`);    
+
             return res.status(501).json({
                 success: false,
                 message: 'Hubo un error creando la orden',
@@ -139,7 +137,7 @@ module.exports = {
 
         } 
         catch (error) {
-            console.log(`Error ${error}`);    
+      
             return res.status(501).json({
                 success: false,
                 message: 'Hubo un error al actualizar la orden',
@@ -164,7 +162,7 @@ module.exports = {
 
         } 
         catch (error) {
-            console.log(`Error ${error}`);    
+ 
             return res.status(501).json({
                 success: false,
                 message: 'Hubo un error al actualizar la orden',
@@ -191,7 +189,7 @@ module.exports = {
 
         } 
         catch (error) {
-            console.log(`Error ${error}`);    
+
             return res.status(501).json({
                 success: false,
                 message: 'Hubo un error al actualizar la orden',
@@ -214,7 +212,7 @@ module.exports = {
 
         } 
         catch (error) {
-            console.log(`Error ${error}`);    
+ 
             return res.status(501).json({
                 success: false,
                 message: 'Hubo un error al actualizar la orden',
@@ -240,8 +238,7 @@ module.exports = {
             });
 
         } 
-        catch (error) {
-            console.log(`Error ${error}`);    
+        catch (error) { 
             return res.status(501).json({
                 success: false,
                 message: 'Hubo un error al actualizar la orden',
@@ -263,7 +260,7 @@ module.exports = {
 
         } 
         catch (error) {
-            console.log(`Error ${error}`);    
+
             return res.status(501).json({
                 success: false,
                 message: 'Hubo un error al actualizar la orden',

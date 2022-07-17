@@ -29,11 +29,11 @@ module.exports = {
                 }
             }
         }
-        console.log(`PAYMENT DATA: ${JSON.stringify(payment_data)}`);
+
 
 
         const data = await mercadopago.payment.create(payment_data).catch((err) => {
-            console.log(err);
+
             return res.status(501).json({
                 message: 'Error al crear el pago',
                 success: false,
@@ -43,7 +43,7 @@ module.exports = {
 
         if (data) {
             
-            console.log('Si hay datos correctos', data.response);
+
 
             if (data !== undefined) {
                 const payment_type_id = module.exports.validatePaymentMethod(payment.payment_type_id);
@@ -55,8 +55,7 @@ module.exports = {
                 order.status = 'PAGADO';
                 const orderData = await Order.create(order);
                 
-                console.log('LA ORDEN SE CREO CORRECTAMENTE');
-
+  
                 // RECORRER TODOS LOS PRODUCTOS AGREGADOS A LA ORDEN
                 for (const product of order.products) {
                     await OrderHasProduct.create(orderData.id, product.id, product.quantity);

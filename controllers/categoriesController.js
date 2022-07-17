@@ -5,14 +5,14 @@ module.exports = {
     async getAll(req, res, next) {
 
         try {
-            console.log("hasta aqui todo posi xd");
+
             const restaurant_id = req.params.restaurant_id;
             const data = await Category.getAll(restaurant_id);
-            console.log(`Categorias ${JSON.stringify(data)}`);
+
             return res.status(201).json(data);
         } 
         catch (error) {
-            console.log(`Error ${error}`);    
+
             return res.status(501).json({
                 message: 'Hubo un error al tratar de obtener las categorias',
                 error: error,
@@ -25,7 +25,7 @@ module.exports = {
     async create(req, res, next) {
         try {
             const category = req.body;
-            console.log(`Categoria enviada: ${category}`);
+
 
             const data = await Category.create(category);
 
@@ -37,7 +37,7 @@ module.exports = {
 
         } 
         catch (error) {
-            console.log(`Error: ${error}`);    
+  
             return res.status(501).json({
                 message: 'Hubo un error al crear la categoria',
                 success: false,
