@@ -49,12 +49,11 @@ module.exports = {
 
         try {
             const id_user = req.params.id_user;
-            if(id_user = 1){
+
                 const data = await TaxiController.getAllRequest(id_user);
             console.log(`Solicitud ${JSON.stringify(data)}`);
             return res.status(201).json(data);
 
-            }
             
         } 
         catch (error) {
