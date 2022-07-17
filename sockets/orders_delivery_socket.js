@@ -25,7 +25,7 @@ module.exports = (io) => {
 
         socket.on('positionAD', function(data) {
             console.log(`EMITIO ${JSON.stringify(data)}`);
-            allDeliveryLocation.emit(`position/${data.id}`, { lat: data.lat, lng: data.lng, speed: data.speed, heading: data.heading  });
+            allDeliveryLocation.emit(`positionAD/${data.id}`, { lat: data.lat, lng: data.lng, speed: data.speed, heading: data.heading  });
         });
 
         socket.on('disconnect', function(data) {
