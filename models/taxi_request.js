@@ -152,5 +152,26 @@ TaxiRequest.getAllRequest = (id_user) => {
 }
 
 
+TaxiRequest.ticketRequest = (request) => {
+    const sql = `
+    UPDATE
+        taxi_request
+    SET
+        id_taxi = $2,
+        id_time = $3,
+        lat = $4,
+        lng = $5
+    WHERE
+        id_client = $1 AND id_taxi IS NULL
+    `;
+    return db.none(sql, [
+        request.id_client,
+        request.id_taxi,
+        request.id_time,
+        request.lat,
+        request.lng
+    ]);
+}
+
 
 module.exports = TaxiRequest;

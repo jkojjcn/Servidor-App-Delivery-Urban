@@ -67,4 +67,28 @@ module.exports = {
 
     },
 
+    async ticketRequest(req, res, next) {
+        try {
+            
+            let taxi_request = req.body;
+            await TaxiController.ticketRequest(taxi_request);
+
+            return res.status(201).json({
+                success: true,
+                message: 'Buscando Taxi..',
+                data: data.id
+            });
+
+        } 
+        catch (error) {
+         
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error creando la petición',
+                error: error
+            });
+        }
+    },
+
+
 }
