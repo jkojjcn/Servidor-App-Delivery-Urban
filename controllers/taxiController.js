@@ -80,7 +80,7 @@ module.exports = {
 
         } 
         catch (error) {
-       
+       console.log(error)
             return res.status(501).json({
                 success: false,
                 message: error,
