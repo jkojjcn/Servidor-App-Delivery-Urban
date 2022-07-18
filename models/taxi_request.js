@@ -164,7 +164,7 @@ TaxiRequest.ticketRequest = (request) => {
         lng = $5,
         updated_at = $6
     WHERE
-        id_client = $1
+        id_client = $1 AND id_taxi = 0
     `;
     return db.none(sql, [
         request.id_client,
