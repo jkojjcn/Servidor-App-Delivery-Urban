@@ -71,10 +71,11 @@ module.exports = {
         try {
             
             let taxi_request = req.body;
-            await TaxiController.ticketRequest(taxi_request);
+          const data =  await TaxiController.ticketRequest(taxi_request);
             return res.status(201).json({
                 success: true,
                 message: 'Buscando Taxi..',
+                data: data
             });
 
         } 
@@ -82,7 +83,7 @@ module.exports = {
        console.log(error)
             return res.status(501).json({
                 success: false,
-                message: error,
+                message: 'Hubo un error al postular',
                 error: error
             });
         }
