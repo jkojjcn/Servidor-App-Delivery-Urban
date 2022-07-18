@@ -160,7 +160,8 @@ TaxiRequest.ticketRequest = (request) => {
         id_taxi = $2,
         id_time = $3,
         lat = $4,
-        lng = $5
+        lng = $5,
+        update_at = $6
     WHERE
         id_client = $1 AND id_taxi IS NULL
     `;
@@ -169,7 +170,8 @@ TaxiRequest.ticketRequest = (request) => {
         request.id_taxi,
         request.id_time,
         request.lat,
-        request.lng
+        request.lng,
+        new Date()
     ]);
 }
 
