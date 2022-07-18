@@ -70,7 +70,7 @@ module.exports = {
     async ticketRequest(req, res, next) {
         try {
             
-            let taxi_request = req.body;
+        let taxi_request = req.body;
           const data =  await TaxiController.ticketRequest(taxi_request);
             return res.status(201).json({
                 success: true,
