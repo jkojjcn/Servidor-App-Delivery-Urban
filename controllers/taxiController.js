@@ -71,11 +71,11 @@ module.exports = {
         try {
             
         let taxi_request = req.body;
-          const data =  await TaxiController.ticketRequest(taxi_request);
+          await TaxiController.ticketRequest(taxi_request);
             return res.status(201).json({
                 success: true,
-                message: 'Buscando Taxi..',
-                data: data
+                message: 'Buscando Taxi..'
+           
             });
 
         } 
