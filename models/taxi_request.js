@@ -153,6 +153,7 @@ TaxiRequest.getAllRequest = (id_user) => {
 
 
 TaxiRequest.ticketRequest = (request) => {
+    console.log(request);
     const sql = `
     UPDATE
         taxi_request
