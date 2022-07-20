@@ -57,7 +57,7 @@ app.set('port', port);
 // LLAMAR A LOS SOCKETS
 orderDeliverySocket(io);
 
-// test git
+// test gitt
 /*
 * LLAMANDO A LA RUTAS
 */
