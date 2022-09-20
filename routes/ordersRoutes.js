@@ -19,7 +19,7 @@ module.exports = (app) => {
    app.post('/api/orders/create', passport.authenticate('jwt', {session: false}), OrdersController.create);
    
    /*
-   * PUT ROUTES
+   * PUT ROUTE
    */
    app.put('/api/orders/updateToDispatched', passport.authenticate('jwt', {session: false}), OrdersController.updateToDispatched);
    app.put('/api/orders/updateToOnTheWay/:price', passport.authenticate('jwt', {session: false}), OrdersController.updateToOnTheWay);
