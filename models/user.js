@@ -47,6 +47,8 @@ User.findByUserId = (id) => {
         U.password,
         U.session_token,
         U.notification_token,
+        U.caja,
+        U.is_available,
         json_agg(
             json_build_object(
                 'id', R.id,
@@ -84,6 +86,7 @@ User.findDeliveryMen = () => {
         U.phone,
         U.password,
         U.session_token,
+        U.caja,
         U.notification_token
     FROM
         users AS U
@@ -242,6 +245,24 @@ User.updateToken = (id, token) => {
         token
     ]);
 }
+
+User.updateDeliveryAvailable = (id, is_available) => {
+    const sql = `
+    UPDATE
+        users
+    SET
+    is_available = $2
+    WHERE
+        id = $1
+    `;
+
+    return db.none(sql, [
+        id,
+        is_available
+    ]);
+}
+
+
 
 User.updateNotificationToken = (id, token) => {
     const sql = `
