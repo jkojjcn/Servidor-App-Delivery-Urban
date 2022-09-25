@@ -339,6 +339,7 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
             'id', R.id,
             'name', R.name,
             'image1', R.image1,
+            'price', R.price,
             'lat', R.lat,
             'lng', R.lng,
             'notification_token', R.notification_token
