@@ -96,7 +96,7 @@ User.findDeliveryMen = () => {
     ON
         R.id = UHR.id_rol
     WHERE
-        R.id = 3  
+        R.id = 3 AND U.is_available = true
     `;
     return db.manyOrNone(sql);
 }
