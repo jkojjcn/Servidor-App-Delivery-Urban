@@ -15,6 +15,7 @@ module.exports = (app, upload) => {
     app.post('/api/users/logout', UsersController.logout);
 
     // ACTUALIZAR DATOS
-    app.put('/api/users/update', upload.array('image', 1), UsersController.update)
-    app.put('/api/users/updateNotificationToken', UsersController.updateNotificationToken)
+    app.put('/api/users/update', UsersController.update);
+    app.put('/api/users/updateWithImage', upload.array('image', 1), UsersController.updateWithImage);
+    app.put('/api/users/updateNotificationToken', UsersController.updateNotificationToken);
 }

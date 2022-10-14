@@ -138,8 +138,32 @@ module.exports = {
             });
         }
     },
-
     async update(req, res, next) {
+        try {
+            
+            const user = req.body;
+            await User.update(user);
+
+
+            return res.status(201).json({
+                success: true,
+                message: 'El usuario se ha actualizado correctamente!',
+                data: user
+            });
+
+        } 
+        catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error con la actualización del usuario',
+                error: error
+            });
+        }
+    },
+
+
+    async updateWithImage(req, res, next) {
         try {
             
             const user = JSON.parse(req.body.user);
