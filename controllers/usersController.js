@@ -160,7 +160,8 @@ module.exports = {
 
             return res.status(201).json({
                 success: true,
-                message: 'Los datos del usuario se actualizaron correctamente'
+                message: 'Los datos del usuario se actualizaron correctamente',
+                data: user
             });
 
         } 
