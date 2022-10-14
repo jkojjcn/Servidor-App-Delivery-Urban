@@ -11,7 +11,7 @@ module.exports = {
             return res.status(201).json(data);
         } 
         catch (error) {
- 
+            console.log(`Error: ${error}`);
             return res.status(501).json({
                 message: `Error al listar los productos por categoria`,
                 success: false,
@@ -28,7 +28,7 @@ module.exports = {
             return res.status(201).json(data);
         } 
         catch (error) {
-
+            console.log(`Error: ${error}`);
             return res.status(501).json({
                 message: `Error al listar los productos por categoria`,
                 success: false,

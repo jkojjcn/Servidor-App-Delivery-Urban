@@ -11,7 +11,7 @@ module.exports = {
             return res.status(201).json(data);
         } 
         catch (error) {
-
+            console.log(`Error: ${error}`);
             return res.status(501).json({
                 message: `Error al obtener los mensajes`,
                 success: false,
@@ -26,7 +26,7 @@ module.exports = {
             let message = req.body;
             const data = await Message.create(message);
             
-
+            console.log('SE CREO LA NOTIFICACION');
 
             return res.status(201).json({
                 success: true,
@@ -36,7 +36,7 @@ module.exports = {
 
         } 
         catch (error) {
- 
+            console.log(`Error ${error}`);    
             return res.status(501).json({
                 success: false,
                 message: 'Hubo un error creando la notificación',

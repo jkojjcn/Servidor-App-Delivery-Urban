@@ -9,11 +9,11 @@ module.exports = {
     async getAll(req, res, next) {
         try {
             const data = await User.getAll();    
-    
+            console.log(`Usuarios: ${data}`);
             return res.status(201).json(data);
         } 
         catch (error) {
-      
+            console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
                 message: 'Error al obtener los usuarios'
@@ -26,11 +26,11 @@ module.exports = {
             const id = req.params.id;
 
             const data = await User.findByUserId(id);    
-        
+            console.log(`Usuario: ${data}`);
             return res.status(201).json(data);
         } 
         catch (error) {
-       
+            console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
                 message: 'Error al obtener el usuario por ID'
@@ -41,11 +41,11 @@ module.exports = {
     async findDeliveryMen(req, res, next) {
         try {
             const data = await User.findDeliveryMen();    
-        
+            console.log(`Repartidores: ${data}`);
             return res.status(201).json(data);
         } 
         catch (error) {
-    
+            console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
                 message: 'Error al obtener los repartidores'
@@ -63,11 +63,11 @@ module.exports = {
                 tokens.push(d.notification_token);
             });
 
-        
+            console.log('Tokens de admin:', tokens);
             return res.status(201).json(tokens);
         } 
         catch (error) {
-      
+            console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
                 message: 'Error al obtener los repartidores'
@@ -91,7 +91,7 @@ module.exports = {
 
         } 
         catch (error) {
-       
+            console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
                 message: 'Hubo un error con el registro del usuario',
@@ -104,7 +104,7 @@ module.exports = {
         try {
             
             const user = JSON.parse(req.body.user);
-   
+            console.log(`Datos enviados del usuario: ${user}`);
 
             const files = req.files;
 
@@ -119,17 +119,18 @@ module.exports = {
 
            
             const data = await User.create(user);
-
+ console.log(`Datos enviados del D1: ${user}`);
             await Rol.create(data.id, 1); // ROL POR DEFECTO (CLIENTE)
 
             return res.status(201).json({
                 success: true,
                 message: 'El registro se realizo correctamente, ahora inicia sesion',
-                data: data.id
+                data: data
             });
 
         } 
         catch (error) {
+            console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
                 message: 'Hubo un error con el registro del usuario',
@@ -142,6 +143,7 @@ module.exports = {
         try {
             
             const user = JSON.parse(req.body.user);
+            console.log(`Datos enviados del usuario: ${JSON.stringify(user)}`);
 
             const files = req.files;
 
@@ -163,7 +165,7 @@ module.exports = {
 
         } 
         catch (error) {
-
+            console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
                 message: 'Hubo un error con la actualizacion de datos del usuario',
@@ -176,7 +178,7 @@ module.exports = {
         try {
             
             const body = req.body;
-
+            console.log('Datos enviados del usuario: ', body);
 
             await User.updateNotificationToken(body.id, body.notification_token);
 
@@ -187,7 +189,7 @@ module.exports = {
 
         } 
         catch (error) {
-
+            console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
                 message: 'Hubo un error con la actualizacion de datos del usuario',
@@ -195,6 +197,34 @@ module.exports = {
             });
         }
     },
+
+
+
+    async updateDeliveryAvailable(req, res, next) {
+        try {
+            
+            const body = req.body;
+            console.log('Datos enviados del usuario: ', body);
+
+            await User.updateDeliveryAvailable(body.id, body.is_available);
+
+            return res.status(201).json({
+                success: true,
+                message: 'El token de notificaciones se ha almacenado correctamente'
+            });
+
+        } 
+        catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error con la actualizacion de datos del usuario',
+                error: error
+            });
+        }
+    },
+
+
 
     async login(req, res, next) {
         try {
@@ -228,7 +258,7 @@ module.exports = {
                 
                 await User.updateToken(myUser.id, `JWT ${token}`);
 
-          
+                console.log(`USUARIO ENVIADO ${data}`);
 
                 return res.status(201).json({
                     success: true,
@@ -245,7 +275,7 @@ module.exports = {
 
         } 
         catch (error) {
-
+            console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
                 message: 'Error al momento de hacer login',
@@ -264,7 +294,7 @@ module.exports = {
             });
         } 
         catch(e) {
- 
+            console.log(`Error: ${error}`);
             return res.status(501).json({
                 success: false,
                 message: 'Error al momento de cerrar sesion',

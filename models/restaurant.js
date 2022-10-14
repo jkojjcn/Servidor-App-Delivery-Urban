@@ -16,7 +16,8 @@ Restaurant.findByCategoryRestaurant = (id_category_restaurant) => {
         R.id_category,
         R.lat,
         R.lng,
-        R.notification_token
+        R.notification_token,
+        R.master_notification_token
     FROM
         restaurants AS R
     INNER JOIN
@@ -43,7 +44,8 @@ Restaurant.findByCategoryAndRestaurantName = (id_category_restaurant, restaurant
         R.id_category,
         R.lat,
         R.lng,
-        R.notification_token
+        R.notification_token,
+        R.master_notification_token
     FROM
         restaurants AS R
     INNER JOIN

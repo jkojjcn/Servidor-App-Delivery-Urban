@@ -191,6 +191,96 @@ Order.findByRestaurantId = (restaurant_id, status) => {
 
 
 
+Order.findByRestaurantAdminId = (restaurant_id, status) => {
+    //  console.log(`${status} y tambien ${restaurant_id}`);
+  
+      const sql = `
+      SELECT 
+          O.id,
+          O.id_client,
+          O.id_address,
+          O.id_delivery,
+          O.status,
+          O.timestamp,
+          O.restaurant_id,
+          O.distance,
+          O.time_order,
+          O.acepted,
+          O.tarjeta,
+          O.total_cliente,
+          JSON_AGG(
+              JSON_BUILD_OBJECT(
+                  'id', P.id,
+                  'name', P.name,
+                  'description', P.description,
+                  'price', P.price,
+                  'price_restaurant', P.price_restaurant,
+                  'available', P.available,
+                  'image1', P.image1,
+                  'image2', P.image2,
+                  'image3', P.image3,
+                  'quantity', OHP.quantity,
+                  'features', OHP.features
+              )
+          ) AS products,
+          JSON_BUILD_OBJECT(
+              'id', U.id,
+              'name', U.name,
+              'lastname', U.lastname,
+              'image', U.image,
+              'phone', U.phone,
+              'notification_token', U.notification_token
+          ) AS client,
+          JSON_BUILD_OBJECT(
+              'id', U2.id,
+              'name', U2.name,
+              'lastname', U2.lastname,
+              'image', U2.image,
+              'phone', U2.phone,
+              'notification_token', U2.notification_token
+          ) AS delivery,
+          JSON_BUILD_OBJECT(
+              'id', A.id,
+              'address', A.address,
+              'neighborhood', A.neighborhood,
+              'lat', A.lat,
+              'lng', A.lng
+          ) AS address
+      FROM 
+          orders AS O
+      INNER JOIN
+          users AS U
+      ON
+          O.id_client = U.id
+      LEFT JOIN
+          users AS U2
+      ON
+          O.id_delivery = U2.id
+      INNER JOIN
+          address AS A
+      ON
+          A.id = O.id_address
+      INNER JOIN
+          order_has_products AS OHP
+      ON
+          OHP.id_order = O.id
+      INNER JOIN
+          products AS P
+      ON
+          P.id = OHP.id_product
+      WHERE
+          O.status = $2
+      GROUP BY
+          O.id, U.id, A.id, U2.id
+      `;
+  
+      return db.manyOrNone(sql, [restaurant_id, status]);
+  
+  }
+
+
+
+
 Order.findByDeliveryAndStatus = (id_delivery, status) => {
 
     const sql = `
@@ -249,6 +339,7 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
             'id', R.id,
             'name', R.name,
             'image1', R.image1,
+            'price', R.price,
             'lat', R.lat,
             'lng', R.lng,
             'notification_token', R.notification_token
