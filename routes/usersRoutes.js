@@ -14,7 +14,7 @@ module.exports = (app, upload) => {
     app.post('/api/users/login', UsersController.login);
     app.post('/api/users/logout', UsersController.logout);
 
-    // ACTUALIZAR DATOS
+    // ACTUALIZAR DATO
     app.put('/api/users/update', passport.authenticate('jwt', {session: false}), UsersController.update);
     app.put('/api/users/updateWithImage', passport.authenticate('jwt', {session: false}), upload.array('image', 1), UsersController.updateWithImage);
     app.put('/api/users/updateNotificationToken', UsersController.updateNotificationToken);

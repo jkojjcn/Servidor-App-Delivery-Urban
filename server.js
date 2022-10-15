@@ -78,7 +78,7 @@ restaurants(app, upload);
 mercadoPagoRoutes(app);
 taxi(app);
 chats(app);
-message(app);
+message(app, upload);
 
 
 server.listen((process.env.PORT), function(){
