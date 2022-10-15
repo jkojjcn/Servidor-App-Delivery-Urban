@@ -3,15 +3,24 @@ const crypto = require('crypto');
 
 const User = {};
 
-User.getAll = () => {
+User.getAll = (id) => {
     const sql = `
     SELECT 
-        *
+        id,
+        email,
+        name,
+        lastname,
+        phone,
+        image,
+        session_token
     FROM
         users
+
+    WHERE
+        id != $1
     `;
 
-    return db.manyOrNone(sql);
+    return db.manyOrNone(sql, id);
 }
 
 User.findById = (id, callback) => {

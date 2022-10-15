@@ -8,7 +8,8 @@ module.exports = {
 
     async getAll(req, res, next) {
         try {
-            const data = await User.getAll();    
+            const id = req.params.id;
+            const data = await User.getAll(id);    
             console.log(`Usuarios: ${data}`);
             return res.status(201).json(data);
         } 
