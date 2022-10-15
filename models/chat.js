@@ -21,7 +21,7 @@ Chat.findByUser1AndUser2 = (id_user1, id_user2) => {
         return db.oneOrNone(sql, [
             id_user1,
             id_user2
-        ])
+        ]);
 }
 
 
