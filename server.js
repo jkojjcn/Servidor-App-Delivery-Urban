@@ -33,7 +33,7 @@ const categories_restaurants = require('./routes/categoriesRestaurantsRoutes');
 const address = require('./routes/addressRoutes');
 const orders = require('./routes/ordersRoutes');
 const mercadoPagoRoutes = require('./routes/mercadoPagoRoutes');
-const message = require('./routes/messajeRoutes');
+const message = require('./routes/messageRoutes');
 const taxi = require('./routes/taxiRoutes');
 const chats = require('./routes/chatsRoutes');
 
@@ -71,9 +71,9 @@ products(app, upload);
 categories_restaurants(app);
 restaurants(app, upload);
 mercadoPagoRoutes(app);
-message(app);
 taxi(app);
 chats(app);
+message(app);
 
 
 server.listen((process.env.PORT), function(){

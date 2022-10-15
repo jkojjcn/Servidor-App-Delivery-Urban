@@ -2,75 +2,38 @@ const db = require('../config/config');
 
 const Message = {};
 
-Message.findMessage = (id_user) => {
-    const sql = `
-    SELECT
-        M.type,
-        M.from_id,
-        M.to_id,
-        M.message_data,
-        M.id_open,
-        M.updated_at,
-        M.created_at,
-        JSON_BUILD_OBJECT(
-            'id', U.id,
-            'name', U.name,
-            'lastname', U.lastname,
-            'image', U.image,
-            'notification_token', U.notification_token,
-            'phone', U.phone
-        ) AS client,
-		JSON_BUILD_OBJECT(
-            'id', U2.id,
-            'name', U2.name,
-            'lastname', U2.lastname,
-            'image', U2.image,
-            'phone', U2.phone,
-            'notification_token', U2.notification_token
-        ) AS receiver
-    FROM
-        message AS M
-    INNER JOIN
-        users AS U
-    ON
-        M.from_id = U.id
-	LEFT JOIN
-		users AS U2
-	ON
-		M.to_id = U2.id
-    WHERE
-        M.from_id = $1
-    OR
-        M.to_id = $1
-    `;
-    return db.manyOrNone(sql, id_user);
-}
-
-
 
 Message.create = (message) => {
     const sql = `
     INSERT INTO
-        message(
-            type,
-            from_id,
-            to_id,
-            message_data,
-            id_open,
+        messages(
+            message,
+            id_sender,
+            id_receiver,
+            id_chat,
+            status,
+            url,
+            is_image,
+            is_video,
+            timestamp,
             updated_at,
             created_at
         )
-    VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING id
+    VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11) RETURNING id
     `;
 
     return db.oneOrNone(sql, [
-        message.type,
-        message.from,
-        message.to,
         message.message,
-        message.open,
+        message.id_sender,
+        message.id_receiver,
+        message.id_chat,
+        message.status,
+        message.url,
+        message.is_image,
+        message.is_video,
+        new Date().getTime(),
         new Date(),
-        new Date(),
+        new Date()
     ]);
 }
 
