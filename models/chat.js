@@ -16,12 +16,15 @@ Chat.findByUser1AndUser2 = (id_user1, id_user2) => {
         WHERE
             {id_user1 = $1 AND id_user2 = $2}
         OR
-            {id_user2 = $1 AND id_user2 = $1}
+            {id_user2 = $1 AND id_user1 = $2}
 
 
         VALUES($1, $2, $3, $4, $5) RETURNING id
         `;
-
+        return db.oneOrNone(sql, [
+            id_user1,
+            id_user2
+        ])
 }
 
 
