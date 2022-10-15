@@ -11,7 +11,7 @@ const passport = require('passport');
 const io = require('socket.io')(server);
 
 
-const orderDeliverySocket = require('./sockets/orders_delivery_socket');
+
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount)
@@ -37,6 +37,9 @@ const message = require('./routes/messageRoutes');
 const taxi = require('./routes/taxiRoutes');
 const chats = require('./routes/chatsRoutes');
 
+const chatSocket = require('./sockets/chat_socket');
+const orderDeliverySocket = require('./sockets/orders_delivery_socket');
+
 
 
 const port = process.env.PORT || 3000;
@@ -58,6 +61,8 @@ app.set('port', port);
 
 // LLAMAR A LOS SOCKETS
 orderDeliverySocket(io);
+chatSocket(io);
+
 
 // test gittt
 /*
