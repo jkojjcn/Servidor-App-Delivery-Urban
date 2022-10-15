@@ -6,6 +6,26 @@ module.exports = {
         try {
 
             const chat = req.body;
+
+            const existChat = await Chat.findByUser1AndUser2(chat.id_user1, chat.id_user2);
+            if (existChat){
+                console.log('ACTUALIZAR CHAT');
+                await Chat.update(chat);
+                return res.status(201).json({
+                    message: 'El chat se ha actualizado correctamente',
+                    success: true,
+                    data : existChat.id
+                });
+            } else {
+                console.log('Se creo el chat');
+                return res.status(201).json({
+                    message: 'El chat se ha creado correctamente',
+                    success: true,
+                    data : existChat.id
+                });
+            }
+
+
             const data = await Chat.create(chat);
             return res.status(201).json({
                 message: 'El chat se ha creado correctamente',
