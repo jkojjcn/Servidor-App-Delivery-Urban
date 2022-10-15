@@ -35,6 +35,8 @@ const orders = require('./routes/ordersRoutes');
 const mercadoPagoRoutes = require('./routes/mercadoPagoRoutes');
 const message = require('./routes/messajeRoutes');
 const taxi = require('./routes/taxiRoutes');
+const chats = require('./routes/chatsRoutes');
+
 
 
 const port = process.env.PORT || 3000;
@@ -71,6 +73,7 @@ restaurants(app, upload);
 mercadoPagoRoutes(app);
 message(app);
 taxi(app);
+chats(app);
 
 
 server.listen((process.env.PORT), function(){
