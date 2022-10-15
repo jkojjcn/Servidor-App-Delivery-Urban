@@ -17,6 +17,7 @@ module.exports = {
                     data : existChat.id
                 });
             } else {
+                console.log('intento de crear chat');
                 const data = await Chat.create(chat);
         
     
