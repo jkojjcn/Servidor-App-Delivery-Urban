@@ -3,6 +3,27 @@ const db = require('../config/config');
 const Message = {};
 
 
+Message.findByChat = (id_chat) => {
+    const sql = `
+    SELECT
+            id,
+            message,
+            id_sender,
+            id_receiver,
+            id_chat,
+            timestamp,
+            status
+    FROM
+            messages
+    WHERE
+            id_chat = $1
+    `;
+
+    return db.manyOrNone(sql, id_chat);
+
+}
+
+
 Message.create = (message) => {
     const sql = `
     INSERT INTO

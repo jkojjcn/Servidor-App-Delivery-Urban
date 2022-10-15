@@ -4,6 +4,9 @@ const asyncForEach = require('../utils/async_foreach');
 
 module.exports = {
 
+
+
+
     async create(req, res, next) {
         try {
 
@@ -26,4 +29,25 @@ module.exports = {
             });
         }
     },
+
+
+    async findByChat(req, res, next) {
+        try {
+
+            const id_chat = req.params.id_chat;
+            const data = await Message.findByChat(id_chat);
+
+            return res.status(201).json(data);
+
+        } 
+        catch (error) {
+            console.log(`Error ${error}`);    
+            return res.status(501).json({
+                success: false,
+                message: 'No se pudo leer los mensajes',
+                error: error
+            });
+        }
+    },
+
 }
