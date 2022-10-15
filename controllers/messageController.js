@@ -50,4 +50,42 @@ module.exports = {
         }
     },
 
+    async createWithImage(req, res, next) {
+        try {
+            
+            const message = JSON.parse(req.body.message);
+            console.log(`Datos enviados del usuario: ${message}`);
+
+            const files = req.files;
+
+            if (files.length > 0) {
+                const pathImage = `image_${Date.now()}`; // NOMBRE DEL ARCHIVO
+                const url = await storage(files[0], pathImage);
+
+                if (url != undefined && url != null) {
+                    message.url = url;
+                }
+            }
+
+           
+            const data = await Message.create(message);
+            console.log(`Datos enviados del D1: ${message}`);
+           
+            return res.status(201).json({
+                success: true,
+                message: 'El mensaje se ha creado correctamente',
+                data: data.id
+            });
+
+        } 
+        catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Hubo un error al crear el mensaje',
+                error: error
+            });
+        }
+    },
+
 }
