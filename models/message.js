@@ -12,7 +12,10 @@ Message.findByChat = (id_chat) => {
             id_receiver,
             id_chat,
             timestamp,
-            status
+            status,
+            is_image,
+            is_video,
+            url
     FROM
             messages
     WHERE
