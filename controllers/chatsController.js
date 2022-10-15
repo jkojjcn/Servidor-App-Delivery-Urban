@@ -17,22 +17,19 @@ module.exports = {
                     data : existChat.id
                 });
             } else {
+                const data = await Chat.create(chat);
+        
+    
                 console.log('Se creo el chat');
                 return res.status(201).json({
                     message: 'El chat se ha creado correctamente',
                     success: true,
-                    data : existChat.id
+                    data : data.id
                 });
             }
 
 
-            const data = await Chat.create(chat);
-            return res.status(201).json({
-                message: 'El chat se ha creado correctamente',
-                success: true,
-                data : data.id
-            })
-
+      
             
         } catch (error) {
             console.log(error);
