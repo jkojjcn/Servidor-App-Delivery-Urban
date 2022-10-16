@@ -9,7 +9,7 @@ module.exports = (app, upload) => {
 
 
 
-    app.put('/api/message/updateToSeen', passport.authenticate('jwt', {session: false}), upload.array('image', 1), MessageController.updateToSeen);
+    app.put('/api/message/updateToSeen', passport.authenticate('jwt', {session: false}), MessageController.updateToSeen);
 
 
 // testUpload
