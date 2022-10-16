@@ -7,5 +7,10 @@ module.exports = (app, upload) => {
     app.post('/api/message/create', passport.authenticate('jwt', {session: false}), MessageController.create);
     app.post('/api/message/createWithImage', passport.authenticate('jwt', {session: false}), upload.array('image', 1), MessageController.createWithImage);
 
+
+
+    app.put('/api/message/updateToSeen', passport.authenticate('jwt', {session: false}), upload.array('image', 1), MessageController.updateToSeen);
+
+
 // testUpload
 }

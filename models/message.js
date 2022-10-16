@@ -61,4 +61,27 @@ Message.create = (message) => {
     ]);
 }
 
+
+Message.updateToSeen = (id) => {
+
+    const sql = `
+    UPDATE 
+        messages
+    SET
+            
+            status = 'VISTO',
+            updated_at = $2
+    WHERE
+            id = $1
+    `;
+    return db.none(sql, [
+        id,
+        new Date()
+    ]);
+
+
+
+}
+
+
 module.exports = Message;

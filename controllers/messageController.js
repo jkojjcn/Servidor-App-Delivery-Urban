@@ -88,4 +88,28 @@ module.exports = {
         }
     },
 
+
+    async updateToSeen(req, res, next) {
+        try {
+
+            const id = req.body.id;
+            await Message.updateToSeen(id);
+
+            return res.status(201).json({
+                success: true,
+                message: 'Se ha actualizado a VISTO'
+            });
+
+        } 
+        catch (error) {
+            console.log(`Error ${error}`);    
+            return res.status(501).json({
+                success: false,
+                message: 'No se ha actualizado a VISTO',
+                error: error
+            });
+        }
+    },
+
+
 }
