@@ -10,6 +10,12 @@ module.exports = (io) => {
             console.log('Nuevo Mensaje', data);
             chatNSP.emit(`mensage/${data.id_chat}`, data);
         });
+
+        socket.on('writing', function(data){
+            console.log('Usuario escribiendo', data);
+            chatNSP.emit(`writing/${data.id_chat}/${data.id_user}`, data);
+        });
+
         socket.on('disconnect', function(data){
             console.log('UN USUARIO SE DESCONECTÓ DE CHAT', socket.id);
         });
