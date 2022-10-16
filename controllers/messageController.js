@@ -97,8 +97,7 @@ module.exports = {
 
             return res.status(201).json({
                 success: true,
-                message: 'Se ha actualizado a VISTO',
-                data : id
+                message: 'Se ha actualizado a VISTO'
             });
 
         } 
