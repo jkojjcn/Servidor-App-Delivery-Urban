@@ -21,7 +21,18 @@ Chat.findByIdUser = (id_user) => {
             U2.lastname AS lastname_user2,
             U2.email AS email_user2,
             U2.image AS image_user2,
-            U2.phone AS phone_user2
+            U2.phone AS phone_user2,
+            (
+                SELECT
+                    message
+                FROM
+                    messages AS M
+                WHERE
+                    M.id_chat = C.id
+                ORDER BY
+                    M.timestamp DESC
+                LIMIT 1
+            ) AS last_message
         FROM
             chats AS C
         INNER JOIN
