@@ -32,7 +32,15 @@ Chat.findByIdUser = (id_user) => {
                 ORDER BY
                     M.timestamp DESC
                 LIMIT 1
-            ) AS last_message
+            ) AS last_message,
+            (
+                SELECT
+                    COUNT(*)
+                FROM
+                    messages AS M
+                WHERE
+                    M.id_chat = C.id AND ((M.status = 'ENVIADO' OR M.status = 'RECIBIDO') AND M.id_reciever = $1)
+            ) AS unread_message
         FROM
             chats AS C
         INNER JOIN
