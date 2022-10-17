@@ -39,7 +39,7 @@ Chat.findByIdUser = (id_user) => {
                 FROM
                     messages AS M
                 WHERE
-                    M.id_chat = C.id AND ((M.status = 'ENVIADO' OR M.status = 'RECIBIDO') AND M.id_reciever = $1)
+                    M.id_chat = C.id AND ((M.status = 'ENVIADO' OR M.status = 'RECIBIDO') AND M.id_receiver = $1)
             ) AS unread_message
         FROM
             chats AS C
