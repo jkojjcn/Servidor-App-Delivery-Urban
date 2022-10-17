@@ -41,6 +41,32 @@ module.exports = {
             });
             
         }
+    },
+
+
+
+    async findByUser(req, res, next){
+
+        try {
+
+            const id_user = req.params.id_user;
+            const data = await Chat.findByIdUser(id_user);
+            console.log('Se creo el chat');
+                return res.status(201).json(data);
+
+            
+        } catch (error) {
+            console.log(error);
+            return res.status(501).json({
+                message: 'No se pudo listar los chats',
+                success: false,
+                error : error
+            });
+            
+        }
+
+
+
     }
 
 }

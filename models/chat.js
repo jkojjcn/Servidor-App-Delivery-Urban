@@ -4,6 +4,50 @@ const Chat = {
 
 };
 
+Chat.findByIdUser = (id_user) => {
+
+    const sql = `
+            SELECT
+            C.id AS id,
+            C.id_user1,
+            C.id_user2,
+            C.timestamp,
+            U1.name AS name_user1,
+            U1.lastname AS lastname_user1,
+            U1.email AS email_user1,
+            U1.image AS image_user1,
+            U1.phone AS phone_user1,
+            U2.name AS name_user2,
+            U2.lastname AS lastname_user2,
+            U2.email AS email_user2,
+            U2.image AS image_user2,
+            U2.phone AS phone_user2
+        FROM
+            chats AS C
+        INNER JOIN
+            users AS U1
+        ON
+            U1.id = C.id_user1
+        INNER JOIN
+            users AS U2
+        ON
+            U2.id = C.id_user2
+        WHERE
+            (id_user1 = $1 OR id_user2 = $1)
+        AND
+            (
+                SELECT
+                    COUNT(*)
+                FROM
+                    messages AS M
+                WHERE
+                    M.id_chat = C.id
+            ) > 0
+    `;
+    return db.manyOrNone(sql, id_user);
+},
+
+
 Chat.findByUser1AndUser2 = (id_user1, id_user2) => {
     const sql = `
         SELECT
