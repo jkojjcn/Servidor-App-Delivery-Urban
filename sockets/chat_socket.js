@@ -6,9 +6,13 @@ module.exports = (io) => {
     const chatNSP = io.of('/chat');
     chatNSP.on('connection', function(socket){
         console.log('USUARIO SE CONECTÓ A SOCKET IO CHAT', socket.id);
+
+
         socket.on('message', function(data){
             console.log('Nuevo Mensaje', data);
-            chatNSP.emit(`mensage/${data.id_chat}`, data);
+            chatNSP.emit(`message/${data.id_chat}`, data);
+            chatNSP.emit(`message/${data.id_user}`, data);
+
         });
 
         socket.on('writing', function(data){
