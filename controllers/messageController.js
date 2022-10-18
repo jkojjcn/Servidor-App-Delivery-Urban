@@ -74,7 +74,7 @@ module.exports = {
             return res.status(201).json({
                 success: true,
                 message: 'El mensaje se ha creado correctamente',
-                data: data.id
+                data: {'id':data.id, 'url':message.url}
             });
 
         } 
