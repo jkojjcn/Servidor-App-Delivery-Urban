@@ -17,11 +17,13 @@ Chat.findByIdUser = (id_user) => {
             U1.email AS email_user1,
             U1.image AS image_user1,
             U1.phone AS phone_user1,
+            U1.notification_token AS notification_token_user1,
             U2.name AS name_user2,
             U2.lastname AS lastname_user2,
             U2.email AS email_user2,
             U2.image AS image_user2,
             U2.phone AS phone_user2,
+            U2.notification_token AS notification_token_user2,
             (
                 SELECT
                     message
