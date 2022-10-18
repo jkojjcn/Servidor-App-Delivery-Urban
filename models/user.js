@@ -12,7 +12,8 @@ User.getAll = (id) => {
         lastname,
         phone,
         image,
-        session_token
+        session_token,
+        notification_token
     FROM
         users
 
