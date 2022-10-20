@@ -8,20 +8,19 @@ module.exports = (io) => {
         console.log('USUARIO SE CONECTÓ A SOCKET IO CHAT', socket.id);
 
 
-        socket.on('message', function(data){
-            console.log('Nuevo Mensaje', data);
+        socket.on('message', function(data) {
+            console.log('Nuevo mensaje', data);
             chatNSP.emit(`message/${data.id_chat}`, data);
             chatNSP.emit(`message/${data.id_user}`, data);
-
         });
 
-        socket.on('writing', function(data){
+        socket.on('writing', function(data) {
             console.log('Usuario escribiendo', data);
             chatNSP.emit(`writing/${data.id_chat}/${data.id_user}`, data);
         });
-
-        socket.on('seen', function(data){
-            console.log('Mensaje visto por: ', data);
+        
+        socket.on('seen', function(data) {
+            console.log('Mensaje visto', data);
             chatNSP.emit(`seen/${data.id_chat}`, data);
         });
 

@@ -66,15 +66,6 @@ Chat.findByIdUser = (id_user) => {
             U2.id = C.id_user2
         WHERE
             (id_user1 = $1 OR id_user2 = $1)
-        AND
-            (
-                SELECT
-                    COUNT(*)
-                FROM
-                    messages AS M
-                WHERE
-                    M.id_chat = C.id
-            ) > 0
     `;
     return db.manyOrNone(sql, id_user);
 },
