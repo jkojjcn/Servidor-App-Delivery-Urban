@@ -20,6 +20,10 @@ Message.findByChat = (id_chat) => {
             messages
     WHERE
             id_chat = $1
+
+    ORDER BY
+            timestamp DESC
+
     `;
 
     return db.manyOrNone(sql, id_chat);
