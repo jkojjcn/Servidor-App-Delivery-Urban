@@ -36,6 +36,8 @@ const mercadoPagoRoutes = require('./routes/mercadoPagoRoutes');
 const message = require('./routes/messageRoutes');
 const taxi = require('./routes/taxiRoutes');
 const chats = require('./routes/chatsRoutes');
+const publications = require('./routes/publicationsRoutes');
+
 
 const chatSocket = require('./sockets/chat_socket');
 const orderDeliverySocket = require('./sockets/orders_delivery_socket');
@@ -70,6 +72,7 @@ chatSocket(io);
 */
 users(app, upload);
 categories(app);
+publications(app);
 address(app);
 orders(app);
 products(app, upload);
