@@ -15,7 +15,7 @@ Publications.findAll = () => {
             'id', R.id,
             'name', R.name,
             'description', R.description,
-            'image1', R.image1,
+            'image1', R.image2,
             'lat', R.lat,
             'lng', R.lng,
             'notification_token', R.notification_token
