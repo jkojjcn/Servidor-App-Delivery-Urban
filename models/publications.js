@@ -20,13 +20,12 @@ Publications.findAll = () => {
             'lng', R.lng,
             'notification_token', R.notification_token
         ) AS restaurant
+    FROM
+        publications AS P
     INNER JOIN
         restaurants AS R
     ON
         R.id = P.restaurant_id
-        
-    FROM
-        publications AS P
     `;
     return db.manyOrNone(sql);
 }
