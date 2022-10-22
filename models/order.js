@@ -338,7 +338,7 @@ Order.findByDeliveryAndStatus = (id_delivery, status) => {
         JSON_BUILD_OBJECT(
             'id', R.id,
             'name', R.name,
-            'image1', R.image1,
+            'image1', R.image3,
             'price', R.price,
             'lat', R.lat,
             'lng', R.lng,
