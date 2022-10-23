@@ -3,8 +3,39 @@ const Rol = require('../models/rol');
 const jwt = require('jsonwebtoken');
 const keys = require('../config/keys');
 const storage = require('../utils/cloud_storage');
+const nodemailer = require('nodemailer');
 
 module.exports = {
+
+
+    async getRecoveryMail(req, res, next){
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'juancojjcn@gmail.com',
+              pass: 'Cl@nn@djko1994'
+            }
+          });
+          
+          var mailOptions = {
+            from: 'juancojjcn@gmail.com',
+            to: 'taniaverangel@gmail.com',
+            subject: 'Correo enviado desde Rush',
+            text: 'Recuperar cuenta'
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+    },
+
+
+
+
 
     async getAll(req, res, next) {
         try {
