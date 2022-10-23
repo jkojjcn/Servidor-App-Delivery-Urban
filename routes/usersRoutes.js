@@ -13,7 +13,9 @@ module.exports = (app, upload) => {
     app.post('/api/users/create', upload.array('image', 1), UsersController.registerWithImage);
     app.post('/api/users/login', UsersController.login);
 
-    app.post('/api/users/getmail', UsersController.getRecoveryMail);
+    app.post('/api/users/createPhone', upload.array('image', 1), UsersController.registerWithImagePhone);
+    app.post('/api/users/loginPhone', UsersController.login);
+
 
 
     app.post('/api/users/logout', UsersController.logout);
