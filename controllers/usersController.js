@@ -393,6 +393,68 @@ module.exports = {
             });
         }
     },
+
+
+    
+
+    async loginPhone(req, res, next) {
+        try {
+            const phone = req.body.phone;
+            const password = req.body.password;
+
+            const myUser = await User.findByPhone(phone);
+
+            if (!myUser) {
+                return res.status(401).json({
+                    success: false,
+                    message: 'El email no fue encontrado'
+                });
+            }
+
+            if (User.isPasswordMatched(password, myUser.password)) {
+                const token = jwt.sign({id: myUser.id, email: myUser.email}, keys.secretOrKey, {
+                    // expiresIn: (60*60*24) // 1 HORA
+                    // expiresIn: (60 * 3) // 2 MINUTO
+                });
+                const data = {
+                    id: myUser.id,
+                    name: myUser.name,
+                    lastname: myUser.lastname,
+                    email: myUser.email,
+                    phone: myUser.phone,
+                    image: myUser.image,
+                    session_token: `JWT ${token}`,
+                    roles: myUser.roles
+                }
+                
+                await User.updateToken(myUser.id, `JWT ${token}`);
+
+                console.log(`USUARIO ENVIADO ${data}`);
+
+                return res.status(201).json({
+                    success: true,
+                    data: data,
+                    message: 'El usuario ha sido autenticado'
+                });
+            }
+            else {
+                return res.status(401).json({
+                    success: false,
+                    message: 'La contraseña es incorrectaaaa'
+                });
+            }
+
+        } 
+        catch (error) {
+            console.log(`Error: ${error}`);
+            return res.status(501).json({
+                success: false,
+                message: 'Error al momento de hacer login',
+                error: error
+            });
+        }
+    },
+
     async logout(req, res, next) {
 
         try {

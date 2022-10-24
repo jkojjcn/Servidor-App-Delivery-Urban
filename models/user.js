@@ -152,6 +152,50 @@ User.findByEmail = (email) => {
     return db.oneOrNone(sql, email);
 }
 
+
+User.findByPhone = (phone) => {
+    const sql = `
+    SELECT
+        U.id,
+        U.email,
+        U.name,
+        U.lastname,
+        U.image,
+        U.phone,
+        U.password,
+        U.session_token,
+        U.notification_token,
+        json_agg(
+            json_build_object(
+                'id', R.id,
+                'name', R.name,
+                'image', R.image,
+                'route', R.route
+            )
+        ) AS roles
+    FROM 
+        users AS U
+    INNER JOIN
+        user_has_roles AS UHR
+    ON
+        UHR.id_user = U.id
+    INNER JOIN
+        roles AS R
+    ON
+        R.id = UHR.id_rol
+    WHERE
+        U.phone = $1
+    GROUP BY
+        U.id
+    `
+    return db.oneOrNone(sql, phone);
+}
+
+
+
+
+
+
 User.getAdminsNotificationTokens = () => {
     const sql = `
     SELECT
