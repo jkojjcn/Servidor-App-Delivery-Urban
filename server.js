@@ -66,10 +66,6 @@ app.set('port', port);
 orderDeliverySocket(io);
 chatSocket(io);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ab3842ac6db2a40f738efbea0a3dd32295bd5892
 // test gittt
 /*
 * LLAMANDO A LA RUTAS
