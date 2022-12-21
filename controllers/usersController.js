@@ -6,13 +6,6 @@ const storage = require('../utils/cloud_storage');
 
 
 module.exports = {
-
-
-
-
-
-
-
     async getAll(req, res, next) {
         try {
             const id = req.params.id;
@@ -31,7 +24,7 @@ module.exports = {
 
     async findById(req, res, next) {
         try {
-            const id = req.params.id;
+            const id = req.params.id; 
 
             const data = await User.findByUserId(id);    
             console.log(`Usuario: ${data}`);
