@@ -10,7 +10,20 @@ types.setTypeParser(1114, function(stringValue) {
     return stringValue;
 });
 
-
+const databaseConfig = {
+  'host': 'ec2-34-194-73-236.compute-1.amazonaws.com',
+  'port': 5432,
+  'database': 'd1e9nh0r79pdni',
+  'user' : 'zwqnqflchccmnp',
+  'password': 'a5b612eb355afa4a3a7a837e49bc09fdc0d8629796906b665d5db00eaa871712',
+  ssl: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false
+    },
+  },
+};
+/*
 const databaseConfig = {
     'host': 'ec2-54-173-77-184.compute-1.amazonaws.com',
     'port': 5432,
@@ -24,7 +37,7 @@ const databaseConfig = {
       },
     },
 };
-/*let cloud_config = {
+let cloud_config = {
     username: 'vtkdjenwmtvbpi',
     database: 'dfp23mevs3oe30',
     password: '09d15179e8b1bd2dac178feb0bdcdc40a6ac65ecf5f39e3e27c710dc31a57f4e',
