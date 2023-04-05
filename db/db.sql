@@ -74,11 +74,12 @@ CREATE TABLE users(
 	phone VARCHAR(80) NOT NULL UNIQUE,
 	image VARCHAR(255) NULL,
 	password VARCHAR(255) NOT NULL,
-	is_available BOOLEAN NULL,
 	session_token VARCHAR(255) NULL,
 	notification_token VARCHAR(255) NULL,
 	created_at TIMESTAMP(0) NOT NULL,
 	updated_at TIMESTAMP(0) NOT NULL
+	is_available BOOLEAN NULL,
+	caja VARCHAR(255) NULL,
 );
 
 DROP TABLE IF EXISTS user_has_roles CASCADE;
@@ -122,9 +123,14 @@ CREATE TABLE restaurants (
 	image1 VARCHAR(255) NOT NULL,
 	image2 VARCHAR(255) NULL,
 	image3 VARCHAR(255) NULL,
+	image4 VARCHAR(255) NULL,
+	lat DECIMAL NULL,
+	lng DECIMAL NULL,
+	notification_token VARCHAR(255) NULL,
+	master_notification_token VARCHAR(255) NULL,
 	id_category BIGINT NOT NULL,
 	created_at TIMESTAMP(0) NOT NULL,
-	updated_at TIMESTAMP(0) NOT NULL,
+	updated_at TIMESTAMP(0) NOT NULL
 );
 
 
@@ -135,9 +141,15 @@ CREATE TABLE products(
 	name VARCHAR(180) NOT NULL UNIQUE,
 	description VARCHAR(255) NOT NULL,
 	price DECIMAL DEFAULT 0,
+	price_restaurant DECIMAL DEFAULT 0,
+	available BIGINT DEFAULT 0,
+	features VARCHAR NULL,
+	lat DECIMAL DEFAULT 0,
+	lng DECIMAL DEFAULT 0,
 	image1 VARCHAR(255) NOT NULL,
 	image2 VARCHAR(255) NULL,
 	image3 VARCHAR(255) NULL,
+	image4 VARCHAR(255) NULL,
 	id_category BIGINT NOT NULL,
 	created_at TIMESTAMP(0) NOT NULL,
 	updated_at TIMESTAMP(0) NOT NULL,
@@ -172,6 +184,12 @@ CREATE TABLE orders(
 	timestamp BIGINT NOT NULL,
 	created_at TIMESTAMP(0) NOT NULL,
 	updated_at TIMESTAMP(0) NOT NULL,
+	restaurant_id VARCHAR(255) NOT NULL,
+	distance DECIMAL NULL,
+	time_order DECIMAL NULL,
+	acepted VARCHAR(255) NOT NULL,
+	tarjeta VARCHAR(255) NOT NULL,
+	total_cliente DECIMAL NOT NULL,
 	FOREIGN KEY(id_client) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY(id_delivery) REFERENCES users(id) ON UPDATE CASCADE ON DELETE CASCADE,
 	FOREIGN KEY(id_address) REFERENCES address(id) ON UPDATE CASCADE ON DELETE CASCADE
@@ -238,4 +256,13 @@ CREATE TABLE messages(
 	FOREIGN KEY(id_sender) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(id_receiver) REFERENCES user(id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY(id_chat) REFERENCES chats(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE publications(
+	id BIGSERIAL PRIMARY KEY,
+	title TEXT NOT NULL,
+	subtitle VARCHAR(255) NULL,
+	fire BOOLEAN DEFAULT FALSE,
+	image BOOLEAN DEFAULT FALSE,
+	restaurant_id BIGINT NOT NULL
 );

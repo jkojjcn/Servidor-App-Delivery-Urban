@@ -11,11 +11,11 @@ types.setTypeParser(1114, function(stringValue) {
 });
 
 const databaseConfig = {
-  'host': 'ec2-34-194-73-236.compute-1.amazonaws.com',
+  'host': 'ec2-3-92-151-217.compute-1.amazonaws.com',
   'port': 5432,
-  'database': 'd1e9nh0r79pdni',
-  'user' : 'zwqnqflchccmnp',
-  'password': 'a5b612eb355afa4a3a7a837e49bc09fdc0d8629796906b665d5db00eaa871712',
+  'database': 'daun12out4i4ae',
+  'user' : 'uqhulomldbdaia',
+  'password': '67697725a8baa94ae8c32acc9cddf906ffd5b0f6426aec0d7d53a57c21bd73eb',
   ssl: true,
   extra: {
     ssl: {
